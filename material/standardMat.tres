@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bi6ll2lsn5yey"]
+
+[ext_resource type="Texture2D" uid="uid://8ql3wdoku7sj" path="res://models/textures/MetalPlates011_Displacement.jpg" id="1_qsxhb"]
+[ext_resource type="Texture2D" uid="uid://cq2gr1pmpyiv7" path="res://models/textures/MetalPlates011_Ambient Occlusion.jpg" id="2_fmaa0"]
+
+[resource]
+shading_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+albedo_color = Color(0.387542, 0.40949, 0.518881, 1)
+albedo_texture = ExtResource("1_qsxhb")
+metallic = 0.37
+metallic_specular = 0.69
+roughness_texture = ExtResource("2_fmaa0")

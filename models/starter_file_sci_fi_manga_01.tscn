@@ -1,0 +1,191 @@
+[gd_scene load_steps=7 format=3 uid="uid://1gk3ad34h7uu"]
+
+[ext_resource type="PackedScene" uid="uid://dyem4msu1plmw" path="res://models/Starter File_Sci-fi Manga_01.blend" id="1_rgyd3"]
+[ext_resource type="Material" uid="uid://df50hnkcqs2l3" path="res://material/simple_outline.tres" id="3_4rk7x"]
+
+[sub_resource type="Gradient" id="Gradient_rgyd3"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.507463, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0j6f6"]
+gradient = SubResource("Gradient_rgyd3")
+
+[sub_resource type="Environment" id="Environment_4rk7x"]
+background_mode = 1
+background_color = Color(0.796243, 0.796243, 0.796243, 1)
+reflected_light_source = 2
+tonemap_mode = 2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.9
+fog_depth_begin = 0.0
+fog_depth_end = 20.0
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission = Color(0.42, 0.42, 0.42, 1)
+volumetric_fog_emission_energy = 518.39
+volumetric_fog_gi_inject = 6.29
+volumetric_fog_anisotropy = 0.77
+volumetric_fog_length = 72.55
+volumetric_fog_detail_spread = 1.56917
+volumetric_fog_ambient_inject = 4.98
+volumetric_fog_sky_affect = 0.621
+adjustment_enabled = true
+adjustment_brightness = 1.8
+adjustment_contrast = 0.5
+adjustment_saturation = 0.6
+adjustment_color_correction = SubResource("GradientTexture1D_0j6f6")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_rgyd3"]
+auto_exposure_speed = 5.0
+
+[node name="Starter File_Sci-fi Manga_01" instance=ExtResource("1_rgyd3")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_4rk7x")
+camera_attributes = SubResource("CameraAttributesPractical_rgyd3")
+
+[node name="Light" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0.15386, 34.3076, -23.5323)
+light_color = Color(0.458168, 0.431424, 0.438243, 1)
+light_energy = 40000.0
+shadow_enabled = true
+shadow_opacity = 0.9
+omni_range = 1209.13
+
+[node name="Light2" type="DirectionalLight3D" parent="." index="2"]
+transform = Transform3D(0.897667, 0.0393469, -0.438914, 0.312979, 0.644236, 0.697857, 0.310223, -0.763814, 0.565995, -1.82954, 15.0631, -2.58203)
+visible = false
+light_color = Color(0.458168, 0.431424, 0.438243, 1)
+light_energy = 16.0
+light_indirect_energy = 4.071
+light_volumetric_fog_energy = 9.727
+light_angular_distance = 45.45
+light_specular = 0.0
+shadow_enabled = true
+shadow_transmittance_bias = -7.384
+shadow_blur = 4.636
+directional_shadow_split_1 = 0.0
+directional_shadow_split_2 = 0.79
+directional_shadow_split_3 = 0.485
+directional_shadow_blend_splits = true
+directional_shadow_fade_start = 0.012
+directional_shadow_max_distance = 6.5
+directional_shadow_pancake_size = 1.9
+
+[node name="Animated Camera" parent="." index="3"]
+transform = Transform3D(0.984722, -0.000232817, -0.174136, -1.15178e-08, 0.999999, -0.00133705, 0.174136, 0.00131662, 0.984721, -4.25867, 2.35241, 6.66839)
+visible = false
+
+[node name="Animated Camera_Target" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23454, 2.39416, -24.0814)
+visible = false
+
+[node name="Pipe Bridge" parent="." index="5"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Pipe Bridge_Pipe 01" parent="." index="6"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Pipe Bridge_Pipe 03" parent="." index="7"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Pipe Bridge_Pipe 02" parent="." index="8"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wall_Left" parent="." index="9"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wall_Vents" parent="." index="10"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wall_Angled Pipes" parent="." index="11"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wall_Right" parent="." index="12"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Columns" parent="." index="13"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Curb" parent="." index="14"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Window Bars" parent="." index="15"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Large Pipe" parent="." index="16"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Medium Pipe" parent="." index="17"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Small Pipe_03" parent="." index="18"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Small Pipe_02" parent="." index="19"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Small Pipe_01" parent="." index="20"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Large Pipe Supports" parent="." index="21"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Coulm Beams" parent="." index="22"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Ladder_01" parent="." index="23"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Ladder Platform" parent="." index="24"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Ladder Stairs" parent="." index="25"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Pipe Cover" parent="." index="26"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Vertical Pipe_01" parent="." index="27"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Vertical Pipe_02" parent="." index="28"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Balcony" parent="." index="29"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Hole Stairs" parent="." index="30"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Ladder_02" parent="." index="31"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Curb_Supports" parent="." index="32"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wires_3D" parent="." index="33"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wire Mounts" parent="." index="34"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wires_3D_001" parent="." index="35"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wire Mounts_001" parent="." index="36"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wires_3D_002" parent="." index="37"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wire Mounts_002" parent="." index="38"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wires_3D_003" parent="." index="39"]
+material_overlay = ExtResource("3_4rk7x")
+
+[node name="Wire Mounts_003" parent="." index="40"]
+material_overlay = ExtResource("3_4rk7x")

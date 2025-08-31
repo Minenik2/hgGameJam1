@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b273sefr8iuh8"]
+
+[ext_resource type="Script" uid="uid://b4p0in8cie0mq" path="res://player/player_controller.gd" id="1_ullwd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ns585"]
+height = 4.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ns585"]
+height = 3.97235
+
+[node name="playerController" type="CharacterBody3D"]
+script = ExtResource("1_ullwd")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ns585")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11225, 0)
+shape = SubResource("CapsuleShape3D_ns585")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.276507, -0.276907)

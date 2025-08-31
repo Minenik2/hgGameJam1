@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://nng8xjwuo33y"]
+
+[ext_resource type="Script" uid="uid://ciasf0sdjnpmv" path="res://audioManager/audio_manager.gd" id="1_vwd0j"]
+[ext_resource type="AudioStream" uid="uid://6vn5ka70aw1b" path="res://audio/attic.wav" id="2_0rjh3"]
+[ext_resource type="AudioStream" uid="uid://dbmcgfilt85yh" path="res://audio/sfx/audio_steps.wav" id="3_7agkn"]
+
+[node name="AudioManager" type="AudioStreamPlayer" node_paths=PackedStringArray("music_player")]
+volume_db = -30.0
+script = ExtResource("1_vwd0j")
+music_player = NodePath(".")
+songs = Array[AudioStream]([ExtResource("2_0rjh3")])
+
+[node name="steps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7agkn")
+volume_db = -20.0
+pitch_scale = 0.9
+
+[node name="land" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7agkn")
+volume_db = -20.0
+pitch_scale = 0.8
