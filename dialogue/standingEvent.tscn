@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv3vx6gyphvfm"]
+
+[ext_resource type="Script" uid="uid://bxdf4rdmuw5fa" path="res://dialogue/standing_event.gd" id="1_e2med"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3capb"]
+
+[node name="standingEvent" type="Area2D"]
+script = ExtResource("1_e2med")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3capb")
+debug_color = Color(0, 0.6, 0.207843, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

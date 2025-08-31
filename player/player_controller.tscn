@@ -9,6 +9,7 @@ height = 4.0
 height = 3.97235
 
 [node name="playerController" type="CharacterBody3D"]
+collision_layer = 3
 script = ExtResource("1_ullwd")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]

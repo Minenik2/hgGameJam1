@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://fytmnutb33d5"]
+
+[node name="Tooltip" type="CanvasLayer"]
+visible = false
+
+[node name="interactTip" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -333.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 1
+text = "Press F To Interact"
+horizontal_alignment = 1
+vertical_alignment = 1

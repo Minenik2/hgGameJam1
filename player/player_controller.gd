@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 @export var speed: float = 5.0
 @export var jump_velocity: float = 7
-@export var mouse_sensitivity: float = 0.004
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera: Camera3D
@@ -15,6 +14,9 @@ var step_interval := 0.4  # Time between step sounds, adjust as needed
 # landing detection
 var was_on_floor: bool = false
 var landed_enabled := false
+
+# dialogue system / dont move when iteracting
+var is_interacting = false
 
 func _ready():
 	camera = $Head/Camera3D
@@ -33,8 +35,8 @@ func _unhandled_input(event):
 
 	# Mouse look (only when captured)
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		pitch = clamp(pitch - event.relative.y * mouse_sensitivity, -PI/2, PI/2)
+		rotate_y(-event.relative.x * GameSettingManager.mouse_sensitivity)
+		pitch = clamp(pitch - event.relative.y * GameSettingManager.mouse_sensitivity, -PI/2, PI/2)
 		camera.rotation.x = pitch
 
 func _physics_process(delta):
@@ -46,22 +48,23 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Movement input
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if !is_interacting:
+		var input_dir = Input.get_vector("left", "right", "up", "down")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-	if direction != Vector3.ZERO:
-		if step_timer <= 0.0 and is_on_floor() and AudioManager.isPlayingLand():
-			AudioManager.playSteps()
-			step_timer = step_interval
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		if direction != Vector3.ZERO:
+			if step_timer <= 0.0 and is_on_floor() and AudioManager.isPlayingLand():
+				AudioManager.playSteps()
+				step_timer = step_interval
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
 
-	# Jump
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
+		# Jump
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y = jump_velocity
 
 	self.velocity = velocity
 	move_and_slide()

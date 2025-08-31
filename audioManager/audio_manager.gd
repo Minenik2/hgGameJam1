@@ -34,3 +34,15 @@ func playLand():
 
 func isPlayingLand():
 	return !$land.playing
+
+func playMenuClick():
+	$menuClick.play()
+
+func playDeath():
+	$death.play()
+
+func playDialogueTalk():
+	$dialogueTalk.play()
+
+func playDialogueClick():
+	$dialogueClick.play()

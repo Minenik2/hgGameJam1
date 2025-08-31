@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://beiur3ng53isp"]
+
+[ext_resource type="Script" uid="uid://bbw1sf76pebqv" path="res://dialogue/interaction/interaction_area.gd" id="1_ncp0b"]
+
+[node name="interactionArea" type="Area3D"]
+collision_mask = 2
+script = ExtResource("1_ncp0b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
