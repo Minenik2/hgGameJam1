@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://o6lxivbby83b"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://o6lxivbby83b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bnsnn"]
 
@@ -85,6 +85,23 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.941176, 0.964706, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3l7p"]
+bg_color = Color(0.137255, 0.141176, 0.141176, 0.235294)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.941176, 0.964706, 0.941176, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfnwa"]
+bg_color = Color(0.584314, 0.0117647, 0.109804, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anbns"]
 bg_color = Color(0.133333, 0.137255, 0.137255, 1)
@@ -199,6 +216,8 @@ ItemList/styles/panel = SubResource("StyleBoxEmpty_fpepn")
 Label/constants/outline_size = 6
 Label/font_sizes/font_size = 32
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_epjyj")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_r3l7p")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_dfnwa")
 RichTextLabel/font_sizes/normal_font_size = 32
 TabBar/styles/button_pressed = SubResource("StyleBoxFlat_anbns")
 TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_0mgju")

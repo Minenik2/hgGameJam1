@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://be75v8p804s4x"]
+
+[ext_resource type="PackedScene" uid="uid://c1a4etq5prq1g" path="res://models/fishing/modernart.blend" id="1_c55ar"]
+[ext_resource type="Script" uid="uid://b1n3ds087niab" path="res://fishingSystem/FishingRod3D.gd" id="1_p6r7e"]
+[ext_resource type="PackedScene" uid="uid://bh7ukovhyy6bu" path="res://fishingSystem/bobber_3d.tscn" id="3_gftcq"]
+[ext_resource type="Script" uid="uid://cbn4nswxqxp0m" path="res://models/nested/line.gd" id="3_nalae"]
+[ext_resource type="PackedScene" uid="uid://b4ob3fc0v04dc" path="res://fishingSystem/minigame/fishing_minigame.tscn" id="5_jxuai"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nalae"]
+transparency = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p6r7e"]
+material = SubResource("StandardMaterial3D_nalae")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 1.0
+
+[node name="fishing_rod" type="Node3D" node_paths=PackedStringArray("minigame")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_p6r7e")
+minigame = NodePath("fishingMinigame")
+
+[node name="modernart" parent="." instance=ExtResource("1_c55ar")]
+
+[node name="LineStart" type="Marker3D" parent="modernart"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11425, 5.7692, 0.165761)
+
+[node name="bobber3D" parent="." instance=ExtResource("3_gftcq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.41421, 4.14961, 0)
+
+[node name="LineEnd" type="Marker3D" parent="bobber3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0133281, 1.42275, 0)
+
+[node name="line" type="MeshInstance3D" parent="." node_paths=PackedStringArray("rod_tip")]
+mesh = SubResource("CylinderMesh_p6r7e")
+script = ExtResource("3_nalae")
+rod_tip = NodePath("../modernart/LineStart")
+
+[node name="fishingMinigame" parent="." instance=ExtResource("5_jxuai")]
+visible = false
+
+[node name="castBar" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="castBar" type="ProgressBar" parent="castBar"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -80.0
+offset_right = 100.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+max_value = 60.0
+show_percentage = false

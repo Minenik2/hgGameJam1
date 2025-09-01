@@ -46,3 +46,13 @@ func playDialogueTalk():
 
 func playDialogueClick():
 	$dialogueClick.play()
+	
+#
+#	fishing
+#
+
+func playHookCatch():
+	$fishing/hookCatch.play()
+
+func playBite():
+	$fishing/bite.play()
