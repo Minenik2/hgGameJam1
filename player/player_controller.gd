@@ -18,6 +18,9 @@ var landed_enabled := false
 # dialogue system / dont move when iteracting
 var is_interacting = false
 
+# fishing system
+@onready var fishing_rod = $fishing_rod
+
 func _ready():
 	camera = $Head/Camera3D
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -30,7 +33,7 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("pause"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
+		elif !is_interacting:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	# Mouse look (only when captured)

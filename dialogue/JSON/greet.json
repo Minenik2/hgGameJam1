@@ -1,0 +1,12 @@
+[
+	{
+		"commands_raw": "Morgan\n---\nYou're awake\n---\nHave you forgotten the time?\n---",
+		"gnode_name": "start",
+		"id": 0.0,
+		"name": "start",
+		"position": [
+			120.0,
+			380.0
+		]
+	}
+]

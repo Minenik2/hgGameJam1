@@ -46,6 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 # will be called when the dialogue starts
 func dialogue_started():
 	Tooltip.hide()
+	player.velocity = Vector3(0, 0, 0)
 	player.is_interacting = true
 	PauseMenu.playerInteracting = true # TODO FIX TAB BUG
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -54,9 +55,11 @@ func dialogue_started():
 func dialogue_ended():
 	DialogueDisplay.hide()
 	Tooltip.show()
-	player.is_interacting = false
 	PauseMenu.playerInteracting = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# small hump so that the player doesnt jump when ending dialogue with space
+	await get_tree().create_timer(0.2).timeout
+	player.is_interacting = false
 
 func _on_body_entered(body: Node3D) -> void:
 	Tooltip.show()

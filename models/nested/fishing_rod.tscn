@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://be75v8p804s4x"]
+
+[ext_resource type="PackedScene" uid="uid://c1a4etq5prq1g" path="res://models/fishing/modernart.blend" id="1_c55ar"]
+[ext_resource type="Script" uid="uid://b1n3ds087niab" path="res://fishingSystem/FishingRod3D.gd" id="1_p6r7e"]
+[ext_resource type="PackedScene" uid="uid://3tgr3kh7y06a" path="res://models/fishing/bobber.blend" id="2_rqhgx"]
+[ext_resource type="Script" uid="uid://cbn4nswxqxp0m" path="res://models/nested/line.gd" id="3_nalae"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nalae"]
+transparency = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p6r7e"]
+material = SubResource("StandardMaterial3D_nalae")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 1.0
+
+[node name="fishing_rod" type="Node3D" node_paths=PackedStringArray("bobber", "rod_tip", "line")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_p6r7e")
+bobber = NodePath("bobber")
+rod_tip = NodePath("modernart/LineStart")
+line = NodePath("line")
+
+[node name="modernart" parent="." instance=ExtResource("1_c55ar")]
+
+[node name="LineStart" type="Marker3D" parent="modernart"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11425, 5.7692, 0.165761)
+
+[node name="bobber" parent="." instance=ExtResource("2_rqhgx")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 4.56687, 4.26793, 0)
+
+[node name="LineEnd" type="Marker3D" parent="bobber"]
+transform = Transform3D(3.33333, 0, 0, 0, 3.33333, 0, 0, 0, 3.33333, -0.254863, 4.50516, 0)
+
+[node name="line" type="MeshInstance3D" parent="." node_paths=PackedStringArray("rod_tip", "hook")]
+mesh = SubResource("CylinderMesh_p6r7e")
+script = ExtResource("3_nalae")
+rod_tip = NodePath("../modernart/LineStart")
+hook = NodePath("../bobber/LineEnd")
