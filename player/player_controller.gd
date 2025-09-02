@@ -2,9 +2,9 @@ extends CharacterBody3D
 
 @export var speed: float = 5.0
 @export var jump_velocity: float = 7
+@export var camera: Camera3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var camera: Camera3D
 var pitch: float = 0.0  # Up/down rotation
 
 # audio for footsteps
@@ -22,7 +22,6 @@ var is_interacting = false
 @onready var fishing_rod = $fishing_rod
 
 func _ready():
-	camera = $Head/Camera3D
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Enable landing detection after 0.1 sec
 	await get_tree().create_timer(0.1).timeout

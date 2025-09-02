@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var bobber: Node3D = $bobber3D
+@export var bobber_scene: PackedScene
 @export var minigame: CanvasLayer
 @export var player: CharacterBody3D
 
@@ -43,6 +44,7 @@ var cast_direction := Vector3.FORWARD
 func _unhandled_input(event: InputEvent) -> void:
 	if !player.is_interacting:
 		if event.is_action_pressed("interact"):
+			cast(50)
 			if not is_casting:
 				begin_charge()
 		elif event.is_action_released("interact"):
@@ -116,10 +118,21 @@ func cast(power: float) -> void:
 	is_casting = true
 	caught = false
 	fish_on_line = false
-	cast_direction = -global_transform.basis.z.normalized()
-	velocity = cast_direction * power + Vector3.UP * (power * 0.5)
+	
+	# Calculate cast direction from camera/rod orientation
+	cast_direction = -$bobberSpawner.global_transform.basis.z
+	var initial_velocity = cast_direction * (power + 30) + Vector3.UP * (power * 0.5)
+	
+	# Spawn bobber
+	bobber = bobber_scene.instantiate()
+	get_tree().current_scene.add_child(bobber)
+	
+	# Place it slightly in front of the rod
+	bobber.global_transform.origin = $bobberSpawner.global_transform.origin
+	
+	# Give it velocity
+	bobber.initialize(initial_velocity)
 	cast_started.emit()
-	bobber.visible = true
 
 # --- Fish Bite ---
 func fish_bite_delay() -> void:

@@ -28,14 +28,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11425, 5.7692, 0.165761)
 
 [node name="bobber3D" parent="." instance=ExtResource("3_gftcq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.41421, 4.14961, 0)
-freeze = true
-script = null
+water_level = 0.0
+gravity = 196.0
+float_amplitude = 0.2
+float_speed = 2.0
+catch_window = 0.8
 
 [node name="LineEnd" type="Marker3D" parent="bobber3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0133281, 1.42275, 0)
-
-[node name="bobberSpawner" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5117, 5.7196, 0)
 
 [node name="line" type="MeshInstance3D" parent="." node_paths=PackedStringArray("rod_tip")]
 mesh = SubResource("CylinderMesh_p6r7e")

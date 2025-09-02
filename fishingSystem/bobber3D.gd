@@ -1,7 +1,6 @@
-extends Node3D
+extends RigidBody3D
 
-signal landed_on_water
-signal bite_started
+signal bobber_landed
 
 @export var water_level := 0.0
 @export var gravity := 9.8 * 20
@@ -16,17 +15,19 @@ var base_pos := Vector3.ZERO
 var fish_on_line := false
 var minigame_active := false
 
+var landed: bool = false
+
+func initialize(initial_velocity: Vector3) -> void:
+	linear_velocity = initial_velocity
+
 func _process(delta):
-	if not floating:
-		velocity.y -= gravity * delta
-		global_translate(velocity * delta)
-		if global_transform.origin.y <= water_level:
-			global_transform.origin.y = water_level
-			velocity = Vector3.ZERO
-			floating = true
-			base_pos = global_transform.origin
-			emit_signal("landed_on_water")
-	else:
+	# Example: detect when bobber hits water level at y = 0
+	if not landed and global_transform.origin.y <= 0.0:
+		landed = true
+		linear_velocity = Vector3.ZERO
+		emit_signal("bobber_landed", global_transform.origin)
+		
+	elif landed:
 		float_timer += delta
 		var bob_offset = sin(float_timer * float_speed) * float_amplitude
 		global_transform.origin.y = base_pos.y + bob_offset
