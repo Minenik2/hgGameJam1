@@ -1,9 +1,10 @@
 extends Node3D
 
-@onready var bobber: Node3D = $bobber3D
+@onready var bobberVisual: Node3D = $bobber3D
 @export var bobber_scene: PackedScene
 @export var minigame: CanvasLayer
 @export var player: CharacterBody3D
+@export var camera: Camera3D
 
 # --- Signals ---
 signal cast_started
@@ -40,11 +41,13 @@ var can_cast := true
 # --- Casting Direction ---
 var cast_direction := Vector3.FORWARD
 
+# Spawned Bobber
+var bobberSpawn = null
+
 # player inputs
 func _unhandled_input(event: InputEvent) -> void:
 	if !player.is_interacting:
 		if event.is_action_pressed("interact"):
-			cast(50)
 			if not is_casting:
 				begin_charge()
 		elif event.is_action_released("interact"):
@@ -64,30 +67,25 @@ func _process(delta: float) -> void:
 
 	# --- Reeling ---
 	if reeling_in:
-		bobber.global_transform.origin = bobber.global_transform.origin.move_toward(global_transform.origin + ROD_TIP_POSITION, REEL_SPEED * delta)
-		if bobber.global_transform.origin.distance_to(global_transform.origin + ROD_TIP_POSITION) < 0.1:
+		var target = $modernart/LineStart.global_transform.origin
+		var bobber_pos = bobberSpawn.global_transform.origin
+
+		# move bobber toward rod tip
+		var direction = (target - bobber_pos)
+		var distance = direction.length()
+
+		if distance > 0.1:
+			direction = direction.normalized()
+			bobberSpawn.global_transform.origin += direction * REEL_SPEED * delta
+		else:
 			if caught: AudioManager.playHookCatch()
-			if bobber.has_node("Fish"): bobber.get_node("Fish").hide()
+			# reel finished
+			bobberSpawn.queue_free()
+			bobberSpawn = null
+			is_casting = false
+			reeling_in = false
 			reeling_finished.emit()
 			reset_fishing()
-		return
-
-	# --- Casting / Floating ---
-	if is_casting and not fish_on_line:
-		if not floating:
-			velocity.y -= GRAVITY * delta
-			bobber.global_translate(velocity * delta)
-			if bobber.global_transform.origin.y <= 0:  # water level at y=0
-				bobber.global_transform.origin.y = 0
-				velocity = Vector3.ZERO
-				floating = true
-				base_water_pos = bobber.global_transform.origin
-				fish_bite_delay()
-		else:
-			float_timer += delta
-			var bob_offset = sin(float_timer * FLOAT_SPEED) * FLOAT_AMPLITUDE
-			var new_pos = base_water_pos + Vector3(0, bob_offset, 0)
-			bobber.global_transform.origin = new_pos
 
 # --- Cast Functions ---
 func begin_charge() -> void:
@@ -118,32 +116,33 @@ func cast(power: float) -> void:
 	is_casting = true
 	caught = false
 	fish_on_line = false
+	bobberVisual.visible = false
 	
 	# Calculate cast direction from camera/rod orientation
-	cast_direction = -$bobberSpawner.global_transform.basis.z
-	var initial_velocity = cast_direction * (power + 30) + Vector3.UP * (power * 0.5)
+	cast_direction = -camera.global_transform.basis.z.normalized()
+	var initial_velocity = cast_direction * power + Vector3.UP * 0.5
 	
 	# Spawn bobber
-	bobber = bobber_scene.instantiate()
-	get_tree().current_scene.add_child(bobber)
+	bobberSpawn = bobber_scene.instantiate()
+	get_tree().current_scene.add_child(bobberSpawn)
+	
+	bobberSpawn.connect("found_bite", self.fish_bite_delay)
 	
 	# Place it slightly in front of the rod
-	bobber.global_transform.origin = $bobberSpawner.global_transform.origin
+	bobberSpawn.global_transform.origin = $bobberSpawner.global_transform.origin
 	
 	# Give it velocity
-	bobber.initialize(initial_velocity)
+	bobberSpawn.initialize(initial_velocity)
 	cast_started.emit()
 
 # --- Fish Bite ---
 func fish_bite_delay() -> void:
-	if minigame_active:
+	if minigame_active or reeling_in:
 		return
-	var wait_time = randf_range(1.0, 3.0)
-	await get_tree().create_timer(wait_time).timeout
 	show_bite()
 
 func show_bite() -> void:
-	if caught or fish_on_line or not floating or minigame_active:
+	if caught or fish_on_line or minigame_active:
 		return
 		
 	AudioManager.playBite()
@@ -167,12 +166,12 @@ func try_catch() -> void:
 			start_reeling_in()
 		else:
 			fish_on_line = false
-			fish_bite_delay()
 	elif floating and not fish_on_line:
 		start_reeling_in()
 
 func start_reeling_in() -> void:
 	if minigame_active: return
+	bobberSpawn.reeling = true
 	reeling_in = true
 	floating = false
 	velocity = Vector3.ZERO
@@ -186,4 +185,4 @@ func reset_fishing() -> void:
 	fish_on_line = false
 	velocity = Vector3.ZERO
 	caught = false
-	bobber.visible = false
+	bobberVisual.visible = true
