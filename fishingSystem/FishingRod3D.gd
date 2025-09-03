@@ -79,7 +79,9 @@ func _process(delta: float) -> void:
 			direction = direction.normalized()
 			bobberSpawn.global_transform.origin += direction * REEL_SPEED * delta
 		else:
-			if caught: AudioManager.playHookCatch()
+			if caught: 
+				AudioManager.playHookCatch()
+				FishRewardUi.caught() # show rewards
 			# reel finished
 			bobberSpawn.queue_free()
 			bobberSpawn = null
@@ -175,7 +177,7 @@ func try_catch() -> void:
 		else:
 			fish_on_line = false
 			bobberSpawn.waiting_for_fish = false
-	elif not fish_on_line:
+	elif not fish_on_line and not reeling_in:
 		start_reeling_in()
 
 func start_reeling_in() -> void:

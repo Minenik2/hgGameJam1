@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct0h1ekgkyftu"]
+
+[ext_resource type="Texture2D" uid="uid://33gwbj54isjt" path="res://art/ui/grungu.png" id="1_u4i3g"]
+[ext_resource type="Script" uid="uid://cj0076x1lki4g" path="res://inventory/slot.gd" id="2_sthnt"]
+
+[node name="slot" type="TextureRect"]
+custom_minimum_size = Vector2(16, 16)
+size_flags_vertical = 3
+texture = ExtResource("1_u4i3g")
+expand_mode = 1
+script = ExtResource("2_sthnt")
+
+[node name="statusFilter" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078, 0.1152, 0.15, 0.254902)

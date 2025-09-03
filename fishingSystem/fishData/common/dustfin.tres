@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://b3qnbudgir51a"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_qir1l"]
+[ext_resource type="Texture2D" uid="uid://c8hg5u50w45a8" path="res://art/fish/carp.png" id="2_qir1l"]
+
+[resource]
+script = ExtResource("1_qir1l")
+name = "Dustfin"
+base_dimension = 12.0
+dimension_variance = 2.0
+base_weight = 1.2
+weight_variance = 0.5
+base_price = 100
+price_variance = 20
+rarity = 0
+texture = ExtResource("2_qir1l")
+description = "Pale and sluggish, feeding on sediment that settles in still pools. Almost translucent."
+metadata/_custom_type_script = "uid://coj83363ykpug"

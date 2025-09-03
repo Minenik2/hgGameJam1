@@ -1,12 +1,22 @@
 [
 	{
-		"commands_raw": "Morgan\n---\nYou're awake\n---\nHave you forgotten the time?\n---",
+		"commands_raw": "Morgan\n---\nYou're awake\n---\nHave you forgotten the time?\n---\nGet your fishing rod ready and begin fishing\n---\n\n?> Have you found anything useful? -> useful",
 		"gnode_name": "start",
 		"id": 0.0,
 		"name": "start",
 		"position": [
 			120.0,
 			380.0
+		]
+	},
+	{
+		"commands_raw": "You think you're the only one daydreaming on the job?\n---\nI haven't found anything either\n---",
+		"gnode_name": "useful",
+		"id": 1.0,
+		"name": "useful",
+		"position": [
+			300.0,
+			280.0
 		]
 	}
 ]

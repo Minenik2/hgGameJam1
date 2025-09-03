@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://dmfvl04tl83s3"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_cce7b"]
+[ext_resource type="Texture2D" uid="uid://i65mrfrkr6pw" path="res://art/fish/fish.png" id="2_cce7b"]
+
+[resource]
+script = ExtResource("1_cce7b")
+name = "Pipe Darter"
+base_dimension = 10.0
+dimension_variance = 2.0
+base_weight = 0.6
+weight_variance = 0.5
+base_price = 100
+price_variance = 20
+rarity = 0
+texture = ExtResource("2_cce7b")
+description = "Quick and nimble, darting between dripping pipes and cracks. Silvery streaks flash across its scales."
+metadata/_custom_type_script = "uid://coj83363ykpug"

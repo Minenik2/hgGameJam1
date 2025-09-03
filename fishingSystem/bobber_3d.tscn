@@ -5,8 +5,10 @@
 [ext_resource type="AudioStream" uid="uid://brwu7vp5hjojy" path="res://audio/sfx/fishing/hook_water.wav" id="3_8p6b1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uxwwt"]
+radius = 0.6
 
 [node name="bobber3D" type="RigidBody3D"]
+continuous_cd = true
 script = ExtResource("1_uxwwt")
 
 [node name="bobber_model_3d" parent="." instance=ExtResource("2_8p6b1")]

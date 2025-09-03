@@ -27,6 +27,7 @@ AudioManager="*res://audioManager/audio_manager.tscn"
 GameSettingManager="*res://pause_menu/gameSettingManager/game_setting_manager.tscn"
 Tooltip="*res://ui/tooltip/tooltip.tscn"
 DialogueDisplay="*res://dialogue/dialogue_display.tscn"
+FishRewardUi="*res://fishingSystem/rewardUI/fish_reward_ui.tscn"
 PauseMenu="*res://pause_menu/pause_menu.tscn"
 DeathScreen="*res://ui/deathScreen/death_screen.tscn"
 

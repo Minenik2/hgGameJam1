@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://rlyl8egw4e3t"]
+[gd_scene load_steps=2 format=3 uid="uid://dn04pcx0yvnvi"]
 
-[ext_resource type="Script" uid="uid://bfitjaru7s7bs" path="res://dialogue/choice_button.gd" id="1_wlx04"]
+[ext_resource type="Script" uid="uid://bomt1ofkvnu05" path="res://dialogue/choice_button.gd" id="1_wlx04"]
 
 [node name="ChoiceButton" type="Button"]
 anchors_preset = 6
@@ -13,6 +13,7 @@ offset_top = -4.0
 offset_bottom = 4.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_constants/outline_size = 6
 script = ExtResource("1_wlx04")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

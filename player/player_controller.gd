@@ -18,9 +18,6 @@ var landed_enabled := false
 # dialogue system / dont move when iteracting
 var is_interacting = false
 
-# fishing system
-@onready var fishing_rod = $fishing_rod
-
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Enable landing detection after 0.1 sec
@@ -28,13 +25,6 @@ func _ready():
 	landed_enabled = true
 
 func _unhandled_input(event):
-	# Toggle mouse capture with Input Map action
-	if Input.is_action_just_pressed("pause"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		elif !is_interacting:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 	# Mouse look (only when captured)
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * GameSettingManager.mouse_sensitivity)

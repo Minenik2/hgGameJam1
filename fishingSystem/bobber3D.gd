@@ -20,7 +20,7 @@ var waiting_for_fish: bool = false
 func initialize(initial_velocity: Vector3) -> void:
 	linear_velocity = initial_velocity
 
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	if !reeling:
 		# Example: detect when bobber hits water level at y = 0
 		if not landed and global_transform.origin.y <= water_level:

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://cvsltdcywfis6"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_mthub"]
+[ext_resource type="Texture2D" uid="uid://y7q8og2k5wy5" path="res://art/fish/bigf.png" id="2_8f4ci"]
+
+[resource]
+script = ExtResource("1_mthub")
+name = "Greyscale Marrow"
+base_dimension = 7.0
+dimension_variance = 0.5
+base_weight = 0.4
+weight_variance = 0.2
+base_price = 100
+price_variance = 20
+rarity = 0
+texture = ExtResource("2_8f4ci")
+description = "A hardy, adaptable fish. Small, but perfectly suited to the endless cavities of the megastructure."
+metadata/_custom_type_script = "uid://coj83363ykpug"
