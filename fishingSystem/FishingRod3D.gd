@@ -1,5 +1,6 @@
 extends Node3D
 
+@onready var line: MeshInstance3D = $line
 @onready var bobberVisual: Node3D = $bobber3D
 @export var bobber_scene: PackedScene
 @export var minigame: CanvasLayer
@@ -16,7 +17,7 @@ signal bite_started
 const GRAVITY := 9.8 * 20  # adjust gravity strength
 const FLOAT_AMPLITUDE := 0.2
 const FLOAT_SPEED := 2.0
-const REEL_SPEED := 5.0
+const REEL_SPEED := 20.0
 const ROD_TIP_POSITION := Vector3(0.5, -0.5, 1.0) # relative to player/rod
 
 # --- State ---
@@ -113,6 +114,7 @@ func end_charge_and_cast() -> void:
 		can_cast = true
 
 func cast(power: float) -> void:
+	$shoot.play()
 	is_casting = true
 	caught = false
 	fish_on_line = false
@@ -131,6 +133,10 @@ func cast(power: float) -> void:
 	# Place it slightly in front of the rod
 	bobberSpawn.global_transform.origin = $bobberSpawner.global_transform.origin
 	
+	# Assign rod tip + bobber to line script
+	line.rod_tip = $modernart/LineStart
+	line.bobber = bobberSpawn
+	
 	# Give it velocity
 	bobberSpawn.initialize(initial_velocity)
 	cast_started.emit()
@@ -146,11 +152,13 @@ func show_bite() -> void:
 		return
 		
 	AudioManager.playBite()
+	line.flash_red(catch_window)
 	fish_on_line = true
 	bite_started.emit()
 	await get_tree().create_timer(catch_window).timeout
 	fish_on_line = false
-	fish_bite_delay()
+	if bobberSpawn:
+		bobberSpawn.waiting_for_fish = false
 
 # --- Reeling ---
 func try_catch() -> void:
@@ -166,11 +174,14 @@ func try_catch() -> void:
 			start_reeling_in()
 		else:
 			fish_on_line = false
-	elif floating and not fish_on_line:
+			bobberSpawn.waiting_for_fish = false
+	elif not fish_on_line:
 		start_reeling_in()
 
 func start_reeling_in() -> void:
 	if minigame_active: return
+	
+	$reel.play()
 	bobberSpawn.reeling = true
 	reeling_in = true
 	floating = false

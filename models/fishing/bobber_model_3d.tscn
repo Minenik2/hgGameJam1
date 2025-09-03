@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ryg31kjmupop"]
+
+[ext_resource type="PackedScene" uid="uid://3tgr3kh7y06a" path="res://models/fishing/bobber.blend" id="1_rrxdh"]
+
+[node name="bobber_model_3d" type="Node3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="bobber" parent="." instance=ExtResource("1_rrxdh")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)

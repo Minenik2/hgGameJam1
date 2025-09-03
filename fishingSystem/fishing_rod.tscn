@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://be75v8p804s4x"]
+[gd_scene load_steps=12 format=3 uid="uid://be75v8p804s4x"]
 
 [ext_resource type="PackedScene" uid="uid://c1a4etq5prq1g" path="res://models/fishing/modernart.blend" id="1_c55ar"]
 [ext_resource type="Script" uid="uid://b1n3ds087niab" path="res://fishingSystem/FishingRod3D.gd" id="1_p6r7e"]
 [ext_resource type="PackedScene" uid="uid://bh7ukovhyy6bu" path="res://fishingSystem/bobber_3d.tscn" id="3_gftcq"]
 [ext_resource type="Script" uid="uid://cbn4nswxqxp0m" path="res://models/nested/line.gd" id="3_nalae"]
+[ext_resource type="PackedScene" uid="uid://ryg31kjmupop" path="res://models/fishing/bobber_model_3d.tscn" id="4_62y68"]
 [ext_resource type="PackedScene" uid="uid://b4ob3fc0v04dc" path="res://fishingSystem/minigame/fishing_minigame.tscn" id="5_jxuai"]
+[ext_resource type="AudioStream" uid="uid://blkmpw6k5rba6" path="res://audio/sfx/fishing/hook_shoot.wav" id="6_70pu3"]
+[ext_resource type="PackedScene" uid="uid://dqo85y4ojov5e" path="res://fishingSystem/cast_bar.tscn" id="6_qy3ue"]
+[ext_resource type="AudioStream" uid="uid://cogrpxm3cqy6v" path="res://audio/sfx/fishing/hook_reel.wav" id="7_e83ia"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nalae"]
 transparency = 1
@@ -23,40 +27,26 @@ minigame = NodePath("fishingMinigame")
 [node name="LineStart" type="Marker3D" parent="modernart"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11425, 5.7692, 0.165761)
 
-[node name="bobber3D" parent="." instance=ExtResource("3_gftcq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.41421, 4.14961, 0)
-freeze = true
-script = null
-
-[node name="LineEnd" type="Marker3D" parent="bobber3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0133281, 1.42275, 0)
+[node name="bobber3D" parent="." instance=ExtResource("4_62y68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4309, 4.07431, 0)
 
 [node name="bobberSpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5117, 5.7196, 0)
 
-[node name="line" type="MeshInstance3D" parent="." node_paths=PackedStringArray("rod_tip")]
+[node name="line" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_p6r7e")
 script = ExtResource("3_nalae")
-rod_tip = NodePath("../modernart/LineStart")
 
 [node name="fishingMinigame" parent="." instance=ExtResource("5_jxuai")]
 visible = false
 
-[node name="castBar" type="CanvasLayer" parent="."]
-visible = false
+[node name="castBar" parent="." instance=ExtResource("6_qy3ue")]
 
-[node name="castBar" type="ProgressBar" parent="castBar"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -80.0
-offset_right = 100.0
-offset_bottom = -59.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-max_value = 60.0
-show_percentage = false
+[node name="shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_70pu3")
+volume_db = -10.0
+pitch_scale = 1.9
+
+[node name="reel" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_e83ia")
+volume_db = -20.0
