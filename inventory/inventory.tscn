@@ -36,7 +36,7 @@ layout_mode = 2
 size_flags_vertical = 0
 text = "Inventory"
 
-[node name="Button" type="Button" parent="ColorRect/inventoryGrid/VBoxContainer/header"]
+[node name="Button_Spawn" type="Button" parent="ColorRect/inventoryGrid/VBoxContainer/header"]
 layout_mode = 2
 theme_override_constants/outline_size = 6
 text = "Back"
@@ -47,6 +47,10 @@ size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="ColorRect/inventoryGrid/VBoxContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 8
+
+[connection signal="pressed" from="ColorRect/inventoryGrid/VBoxContainer/header/Button_Spawn" to="ColorRect/inventoryGrid" method="_on_button_spawn_pressed"]
