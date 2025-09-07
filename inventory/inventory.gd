@@ -17,6 +17,8 @@ var item_held = null
 var current_slot = null
 var can_place := false
 var icon_anchor : Vector2
+# deactivate while hidden
+var active = false
 
 func _ready() -> void:
 	grid_container.columns = column_count
@@ -24,18 +26,25 @@ func _ready() -> void:
 	for i in range(column_count * rows):
 		create_slot()
 
-func _process(delta: float) -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	if not active:
+		return
+	
+	# Mouse position inside scroll_container?
+	var mouse_inside = scroll_container.get_global_rect().has_point(get_global_mouse_position())
+	
 	if item_held:
-		if Input.is_action_just_pressed("rotate") and scroll_container.get_global_rect().has_point(get_global_mouse_position()):
+		# Rotate item
+		if event.is_action_pressed("rotate") and mouse_inside:
 			rotate_item()
-			
-		if Input.is_action_just_pressed("interact"):
-			if scroll_container.get_global_rect().has_point(get_global_mouse_position()):
-				place_item()
+		
+		# Place item
+		elif event.is_action_pressed("interact") and mouse_inside:
+			place_item()
 	else:
-		if Input.is_action_just_pressed("interact"):
-			if scroll_container.get_global_rect().has_point(get_global_mouse_position()):
-				pick_item()
+		# Pick item
+		if event.is_action_pressed("interact") and mouse_inside:
+			pick_item()
 
 func create_slot():
 	var new_slot = slot_scene.instantiate()
@@ -100,7 +109,8 @@ func rotate_item():
 func place_item():
 	if not can_place or not current_slot:
 		return
-	
+	if item_held.fishData.rarity == FishData.RARITY.COMMON:
+		AudioManager.playDropCommon()
 	emit_signal("item_placed", item_held)
 		
 	var calculated_grid_id = current_slot.slot_ID + icon_anchor.x * col_count + icon_anchor.y
@@ -128,6 +138,11 @@ func pick_item():
 	item_held = current_slot.item_stored
 	item_held.selected = true
 	
+	# only using fish data for playing sound
+	# could potentially be improved to also account for grid layout but skill issue
+	if item_held.fishData.rarity == FishData.RARITY.COMMON:
+		AudioManager.playPickUpCommon()
+	
 	item_held.z_index = 5
 	emit_signal("item_picked_up", item_held)
 	
@@ -143,10 +158,13 @@ func pick_item():
 	check_slot_availability(current_slot)
 	set_grids.call_deferred(current_slot) 
 
-func spawn_item_to_inventory(item_id: int) -> bool:
+func spawn_item_to_inventory(fish: FishData) -> bool:
 	# 1. Create and add to scene tree before anything else
 	var new_item = item_scene.instantiate()
 	grid_container.add_child(new_item)
+	
+	new_item.fishData = fish
+	var item_id = fish.item_id
 	
 	# 2. Load item data (now safe since it's in the tree)
 	new_item.load_item(item_id)
@@ -184,6 +202,21 @@ func spawn_item_to_inventory(item_id: int) -> bool:
 	new_item.queue_free()
 	item_held = null
 	return false
+
+func clear_inventory() -> void:
+	# Free all stored items inside the grid
+	for slot in grid_array:
+		if slot.item_stored:
+			slot.item_stored.queue_free()
+			slot.item_stored = null
+		slot.state = slot.States.FREE
+		slot.set_color(slot.States.DEFAULT)
+
+	# Reset variables
+	item_held = null
+	current_slot = null
+	can_place = false
+	icon_anchor = Vector2.ZERO
 
 
 func _on_item_picked_up(item: Variant) -> void:

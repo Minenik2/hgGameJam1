@@ -6,6 +6,9 @@ var item_ID: int
 var item_grids := []
 var selected = false
 var grid_anchor = null
+var fishData: FishData
+
+var png_size
 
 func _process(delta: float) -> void:
 	if selected:
@@ -20,7 +23,7 @@ func load_item(a_ItemID : int) -> void:
 
 	# Get PNG size
 	var image: Image = tex.get_image()
-	var png_size = image.get_size()  # Vector2i(width, height)
+	png_size = image.get_size()  # Vector2i(width, height)
 	png_size = png_size * 4
 	
 	# Set icon size and position based on actual PNG size
@@ -49,5 +52,10 @@ func _snap_to(destination: Vector2):
 	else:
 		var temp_xy_switch = Vector2(iconRect_path.size.y, iconRect_path.size.x)
 		destination += temp_xy_switch/2
+	if iconRect_path.size == Vector2(64, 128) and rotation_degrees == 180:
+		iconRect_path.position = Vector2(0, -96)
+	elif iconRect_path.size == Vector2(64, 128):
+		iconRect_path.size = Vector2(png_size)
+		iconRect_path.position = -Vector2(png_size) / 2
 	tween.tween_property(self, "global_position", destination, 0.15).set_trans(Tween.TRANS_SINE)
 	selected = false

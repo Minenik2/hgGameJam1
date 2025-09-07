@@ -60,3 +60,9 @@ func playBite():
 #
 # Fish loot
 #
+
+func playPickUpCommon():
+	$fishLoot/pickUpCommon.play()
+
+func playDropCommon():
+	$fishLoot/dropCommon.play()
