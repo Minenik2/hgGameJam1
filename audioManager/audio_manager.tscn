@@ -55,3 +55,7 @@ pitch_scale = 1.9
 stream = ExtResource("7_5ulgm")
 volume_db = -10.0
 pitch_scale = 1.2
+
+[node name="fishLoot" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="fishLoot"]

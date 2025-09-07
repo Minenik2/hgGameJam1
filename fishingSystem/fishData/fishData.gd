@@ -21,6 +21,10 @@ enum RARITY {
 @export var texture: Texture2D
 @export var description: String
 
+@export_category("Inventory Shape")
+@export var grid: String
+@export var item_id: int
+
 func generate_instance() -> Dictionary:
 	var rng = RandomNumberGenerator.new()
 

@@ -56,3 +56,7 @@ func playHookCatch():
 
 func playBite():
 	$fishing/bite.play()
+
+#
+# Fish loot
+#

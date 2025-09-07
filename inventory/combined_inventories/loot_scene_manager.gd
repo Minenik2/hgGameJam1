@@ -9,9 +9,12 @@ func _on_done_button_down() -> void:
 	PauseMenu.playerInteracting = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func startLoot() -> void:
+func startLoot(currentFish: FishData) -> void:
 	PauseMenu.playerInteracting = true
 	show()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	await get_tree().process_frame
-	inventoryReward.spawn_item_to_inventory(1)
+	inventoryReward.spawn_item_to_inventory(currentFish.item_id)
+	# 5% chance to spawn an extra one
+	if randi() % 100 < 5:  # generates a number 0-99
+		inventoryReward.spawn_item_to_inventory(currentFish.item_id)

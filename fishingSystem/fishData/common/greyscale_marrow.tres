@@ -15,4 +15,6 @@ price_variance = 20
 rarity = 0
 texture = ExtResource("2_8f4ci")
 description = "A hardy, adaptable fish. Small, but perfectly suited to the endless cavities of the megastructure."
+grid = ""
+item_id = 1
 metadata/_custom_type_script = "uid://coj83363ykpug"

@@ -9,6 +9,8 @@ extends CanvasLayer
 @onready var texture_rect: TextureRect = $Panel/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/TextureRect
 @onready var desc: RichTextLabel = $Panel/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/RichTextLabel
 
+var currentFish: FishData
+
 func caught() -> void:
 	PauseMenu.playerInteracting = true
 	updateText($Panel.roll_loot())
@@ -20,10 +22,11 @@ func _on_button_pressed() -> void:
 	$".".hide()
 	PauseMenu.playerInteracting = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	LootScene.startLoot()
+	LootScene.startLoot(currentFish)
 	
 func updateText(fishData: FishData):
 	var fishDataDict = fishData.generate_instance()
+	var currentFish = fishData
 	
 	name_2.text = fishDataDict["name"]
 	cm.text = "%0.2f" % fishDataDict["dimension"] + " cm"

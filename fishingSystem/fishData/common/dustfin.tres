@@ -15,4 +15,6 @@ price_variance = 20
 rarity = 0
 texture = ExtResource("2_qir1l")
 description = "Pale and sluggish, feeding on sediment that settles in still pools. Almost translucent."
+grid = ""
+item_id = 2
 metadata/_custom_type_script = "uid://coj83363ykpug"

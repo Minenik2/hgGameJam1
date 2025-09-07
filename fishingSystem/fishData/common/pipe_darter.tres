@@ -15,4 +15,6 @@ price_variance = 20
 rarity = 0
 texture = ExtResource("2_cce7b")
 description = "Quick and nimble, darting between dripping pipes and cracks. Silvery streaks flash across its scales."
+grid = ""
+item_id = 4
 metadata/_custom_type_script = "uid://coj83363ykpug"
