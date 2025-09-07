@@ -23,5 +23,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 column_count = 4
 
+[connection signal="item_picked_up" from="inventory" to="inventory2" method="_on_item_picked_up"]
+[connection signal="item_placed" from="inventory" to="inventory2" method="_on_item_placed"]
 [connection signal="item_picked_up" from="inventory2" to="inventory" method="_on_item_picked_up"]
 [connection signal="item_placed" from="inventory2" to="inventory" method="_on_item_placed"]
