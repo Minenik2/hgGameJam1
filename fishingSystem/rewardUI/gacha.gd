@@ -4,6 +4,7 @@ extends Node
 var greyscale: FishData = preload("res://fishingSystem/fishData/common/greyscale_marrow.tres")
 var dustfin: FishData = preload("res://fishingSystem/fishData/common/dustfin.tres")
 var pipe_darter: FishData = preload("res://fishingSystem/fishData/common/pipe_darter.tres")
+var eyefish: FishData = preload("res://fishingSystem/fishData/common/eyefish.tres")
 
 # Pity counters
 var rare_pity_counter = 1
@@ -14,7 +15,8 @@ var loot_table = {
 	"common": [
 		greyscale,
 		dustfin,
-		pipe_darter
+		pipe_darter,
+		eyefish
 	],
 	"rare": [
 		greyscale

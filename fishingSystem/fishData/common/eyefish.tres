@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://di7giat13gv7p"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_4pitt"]
+[ext_resource type="Texture2D" uid="uid://7yukvke7uq8h" path="res://art/fish/eyefish.png" id="2_4pitt"]
+
+[resource]
+script = ExtResource("1_4pitt")
+name = "Bundled Eye"
+base_dimension = 10.0
+dimension_variance = 7.0
+base_weight = 3.7
+weight_variance = 0.5
+base_price = 100
+price_variance = 20
+rarity = 0
+texture = ExtResource("2_4pitt")
+description = "It's body half-covered in clusters of eyes, all staring in different directions. When exposed to light, the irises move independently, and a faint high-pitched voice screechs within its body."
+grid = ""
+item_id = 3
+metadata/_custom_type_script = "uid://coj83363ykpug"

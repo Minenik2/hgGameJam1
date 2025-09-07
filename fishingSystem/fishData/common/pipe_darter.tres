@@ -6,10 +6,10 @@
 [resource]
 script = ExtResource("1_cce7b")
 name = "Pipe Darter"
-base_dimension = 10.0
-dimension_variance = 2.0
-base_weight = 0.6
-weight_variance = 0.5
+base_dimension = 3.0
+dimension_variance = 0.5
+base_weight = 0.4
+weight_variance = 0.2
 base_price = 100
 price_variance = 20
 rarity = 0

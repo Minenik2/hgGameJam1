@@ -12,7 +12,7 @@
 	"3": {
 	  "Name": "eyefish",
 	  "Value": 30,
-	  "Grid": "0.0/1,0"
+	  "Grid": "0,0/1,0"
 	},
 	"4": {
 	  "Name": "fish",

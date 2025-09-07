@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://nng8xjwuo33y"]
+[gd_scene load_steps=11 format=3 uid="uid://nng8xjwuo33y"]
 
 [ext_resource type="Script" uid="uid://ciasf0sdjnpmv" path="res://audioManager/audio_manager.gd" id="1_vwd0j"]
 [ext_resource type="AudioStream" uid="uid://6vn5ka70aw1b" path="res://audio/attic.wav" id="2_0rjh3"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://5s3tc7w11df7" path="res://audio/sfx/fishing/bite.wav" id="7_5ulgm"]
 [ext_resource type="AudioStream" uid="uid://pctsgjvcol85" path="res://audio/sfx/fishShape/pickUpCommon.wav" id="8_rmedq"]
 [ext_resource type="AudioStream" uid="uid://b3ge34xfx7avs" path="res://audio/sfx/fishShape/pickUpRare.wav" id="9_3iii8"]
+[ext_resource type="AudioStream" uid="uid://dy3bp3r7ethf3" path="res://audio/sfx/fishShape/pickUpLegendary.wav" id="10_fpdjf"]
 
 [node name="AudioManager" type="AudioStreamPlayer" node_paths=PackedStringArray("music_player")]
 volume_db = -30.0
@@ -68,6 +69,15 @@ pitch_scale = 2.1
 [node name="pickUpRare" type="AudioStreamPlayer" parent="fishLoot"]
 stream = ExtResource("9_3iii8")
 pitch_scale = 2.1
+
+[node name="pickUpLegendary" type="AudioStreamPlayer" parent="fishLoot"]
+stream = ExtResource("10_fpdjf")
+volume_db = -10.0
+
+[node name="dropLegendary" type="AudioStreamPlayer" parent="fishLoot"]
+stream = ExtResource("10_fpdjf")
+volume_db = -10.0
+pitch_scale = 0.86
 
 [node name="dropRare" type="AudioStreamPlayer" parent="fishLoot"]
 stream = ExtResource("9_3iii8")

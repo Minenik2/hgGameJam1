@@ -66,3 +66,15 @@ func playPickUpCommon():
 
 func playDropCommon():
 	$fishLoot/dropCommon.play()
+
+func playPickUpRare():
+	$fishLoot/pickUpRare.play()
+
+func playDropRare():
+	$fishLoot/dropRare.play()
+
+func playPickUpLegendary():
+	$fishLoot/pickUpLegendary.play()
+
+func playDropLegendary():
+	$fishLoot/dropLegendary.play()

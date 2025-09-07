@@ -47,15 +47,10 @@ func rotate_item():
 
 func _snap_to(destination: Vector2):
 	var tween = get_tree().create_tween()
-	if int(rotation_degrees) % 100 == 0:
+	if int(rotation_degrees) % 180 == 0:
 		destination += iconRect_path.size/2
 	else:
 		var temp_xy_switch = Vector2(iconRect_path.size.y, iconRect_path.size.x)
 		destination += temp_xy_switch/2
-	if iconRect_path.size == Vector2(64, 128) and rotation_degrees == 180:
-		iconRect_path.position = Vector2(0, -96)
-	elif iconRect_path.size == Vector2(64, 128):
-		iconRect_path.size = Vector2(png_size)
-		iconRect_path.position = -Vector2(png_size) / 2
 	tween.tween_property(self, "global_position", destination, 0.15).set_trans(Tween.TRANS_SINE)
 	selected = false
