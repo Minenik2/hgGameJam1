@@ -2,9 +2,17 @@
 
 [ext_resource type="Script" uid="uid://d2v0bl42ep251" path="res://inventory/inventory.gd" id="1_62wf1"]
 
-[node name="inventory" type="CanvasLayer"]
+[node name="inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_62wf1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,7 +30,6 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
-script = ExtResource("1_62wf1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/inventoryGrid"]
 layout_mode = 2
@@ -46,10 +53,10 @@ size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="ColorRect/inventoryGrid/VBoxContainer/ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
-columns = 8
+columns = 6
 
 [connection signal="pressed" from="ColorRect/inventoryGrid/VBoxContainer/header/Button_Spawn" to="ColorRect/inventoryGrid" method="_on_button_spawn_pressed"]

@@ -1,19 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://da33tfu34srgg"]
+[gd_scene load_steps=3 format=3 uid="uid://da33tfu34srgg"]
 
 [ext_resource type="Script" uid="uid://ddlris3l4oqxy" path="res://inventory/inventoryItem.gd" id="1_ijq0q"]
+[ext_resource type="Texture2D" uid="uid://y7q8og2k5wy5" path="res://art/fish/bigf.png" id="2_3c8lv"]
 
 [node name="Item" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_ijq0q")
 
 [node name="Icon" type="TextureRect" parent="."]
+z_index = 5
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -64.0
+offset_top = -60.0
+offset_right = 64.0
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_3c8lv")
+stretch_mode = 5

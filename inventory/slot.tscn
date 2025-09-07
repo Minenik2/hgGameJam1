@@ -4,14 +4,12 @@
 [ext_resource type="Script" uid="uid://cj0076x1lki4g" path="res://inventory/slot.gd" id="2_sthnt"]
 
 [node name="slot" type="TextureRect"]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(64, 64)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 texture = ExtResource("1_sthnt")
 expand_mode = 1
 script = ExtResource("2_sthnt")

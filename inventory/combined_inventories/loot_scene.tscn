@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsjw4dnrto7p7"]
+
+[ext_resource type="PackedScene" uid="uid://b4f7svei6orof" path="res://inventory/inventory.tscn" id="1_ugvoa"]
+
+[node name="loot_scene" type="CanvasLayer"]
+
+[node name="inventory" parent="." instance=ExtResource("1_ugvoa")]
+anchors_preset = 11
+anchor_left = 1.0
+offset_left = -301.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+column_count = 4
+rows = 5
+
+[node name="inventory2" parent="." instance=ExtResource("1_ugvoa")]
+anchors_preset = 9
+anchor_right = 0.0
+offset_right = 295.0
+grow_horizontal = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+column_count = 4

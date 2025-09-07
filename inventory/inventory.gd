@@ -1,9 +1,12 @@
 extends Control
 
+@export var column_count: int = 6
+@export var rows: int = 3
+
 @onready var slot_scene = preload("res://inventory/slot.tscn")
-@onready var grid_container: GridContainer = $VBoxContainer/ScrollContainer/GridContainer
+@onready var grid_container: GridContainer = $ColorRect/inventoryGrid/VBoxContainer/ScrollContainer/GridContainer
 @onready var item_scene = preload("res://inventory/item.tscn")
-@onready var scroll_container = $VBoxContainer/ScrollContainer
+@onready var scroll_container = $ColorRect/inventoryGrid/VBoxContainer/ScrollContainer
 @onready var col_count = grid_container.columns
 
 var grid_array := []
@@ -13,7 +16,9 @@ var can_place := false
 var icon_anchor : Vector2
 
 func _ready() -> void:
-	for i in range(64):
+	grid_container.columns = column_count
+	col_count = grid_container.columns
+	for i in range(column_count * rows):
 		create_slot()
 	await get_tree().process_frame
 	spawn_item_to_inventory(1)
@@ -117,6 +122,8 @@ func place_item():
 		grid_array[grid_to_check].state = grid_array[grid_to_check].States.TAKEN
 		grid_array[grid_to_check].item_stored = item_held
 	
+	item_held.z_index = 0
+	
 	item_held = null
 	clear_grid()
 
@@ -126,6 +133,8 @@ func pick_item():
 	
 	item_held = current_slot.item_stored
 	item_held.selected = true
+	
+	item_held.z_index = 5
 	
 	item_held.get_parent().remove_child(item_held)
 	add_child(item_held)
@@ -153,19 +162,16 @@ func spawn_item_to_inventory(item_id: int) -> bool:
 		check_slot_availability(slot)
 
 		if can_place:
-			for grid in item_held.item_grids:
-				if grid[1] < icon_anchor.x: icon_anchor.x = grid[1]
-				if grid[0] < icon_anchor.y: icon_anchor.y = grid[0]
-			
-			var calculated_grid_id = slot.slot_ID + icon_anchor.x * col_count + icon_anchor.y
-			print(grid_array[calculated_grid_id].global_position)
-			var destination = grid_array[calculated_grid_id].global_position
-			if int(rotation_degrees) % 100 == 0:
-				destination += new_item.iconRect_path.size
-			else:
-				var temp_xy_switch = Vector2(new_item.iconRect_path.size.y, new_item.iconRect_path.size.x)
-				destination += temp_xy_switch
-			new_item.global_position = destination
+			# Snap to correct anchor position
+			var icon_anchor_local = Vector2(10000, 10000)
+			for grid in new_item.item_grids:
+				if grid[1] < icon_anchor_local.x:
+					icon_anchor_local.x = grid[1]
+				if grid[0] < icon_anchor_local.y:
+					icon_anchor_local.y = grid[0]
+
+			var calculated_grid_id = slot.slot_ID + icon_anchor_local.x * col_count + icon_anchor_local.y
+			new_item._snap_to(grid_array[calculated_grid_id].global_position)
 
 			# Update slot states
 			new_item.grid_anchor = slot
@@ -173,7 +179,9 @@ func spawn_item_to_inventory(item_id: int) -> bool:
 				var grid_to_check = slot.slot_ID + grid[0] + grid[1] * col_count
 				grid_array[grid_to_check].state = grid_array[grid_to_check].States.TAKEN
 				grid_array[grid_to_check].item_stored = new_item
-
+			
+			item_held.z_index = 0
+			
 			item_held = null  # Clear temporary state
 			return true  # Successfully placed
 
