@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://da33tfu34srgg"]
+[gd_scene load_steps=2 format=3 uid="uid://da33tfu34srgg"]
 
 [ext_resource type="Script" uid="uid://ddlris3l4oqxy" path="res://inventory/inventoryItem.gd" id="1_ijq0q"]
-[ext_resource type="Texture2D" uid="uid://y7q8og2k5wy5" path="res://art/fish/bigf.png" id="2_3c8lv"]
 
 [node name="Item" type="Node2D"]
 texture_filter = 1
@@ -20,5 +19,4 @@ offset_right = 64.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_3c8lv")
-stretch_mode = 5
+stretch_mode = 4

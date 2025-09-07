@@ -26,7 +26,7 @@ func _on_button_pressed() -> void:
 	
 func updateText(fishData: FishData):
 	var fishDataDict = fishData.generate_instance()
-	var currentFish = fishData
+	currentFish = fishData
 	
 	name_2.text = fishDataDict["name"]
 	cm.text = "%0.2f" % fishDataDict["dimension"] + " cm"

@@ -12,9 +12,21 @@ func _process(delta: float) -> void:
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
 
 func load_item(a_ItemID : int) -> void:
-	var Icon_path = "res://art/fish/" + DataHandler.item_data[str(a_ItemID)]["Name"] + ".png"
-	print(Icon_path)
-	iconRect_path.texture = load(Icon_path)
+	var icon_path = "res://art/fish/" + DataHandler.item_data[str(a_ItemID)]["Name"] + ".png"
+	print(icon_path)
+	# Load texture
+	var tex: Texture2D = load(icon_path)
+	iconRect_path.texture = tex
+
+	# Get PNG size
+	var image: Image = tex.get_image()
+	var png_size = image.get_size()  # Vector2i(width, height)
+	png_size = png_size * 4
+	
+	# Set icon size and position based on actual PNG size
+	iconRect_path.size = Vector2(png_size)
+	iconRect_path.position = -Vector2(png_size) / 2
+	
 	for grid in DataHandler.item_grid_data[str(a_ItemID)]:
 		var converter_array := []
 		for i in grid:
