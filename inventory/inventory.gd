@@ -9,6 +9,9 @@ extends Control
 @onready var scroll_container = $ColorRect/inventoryGrid/VBoxContainer/ScrollContainer
 @onready var col_count = grid_container.columns
 
+signal item_picked_up(item)
+signal item_placed(item)
+
 var grid_array := []
 var item_held = null
 var current_slot = null
@@ -108,6 +111,8 @@ func rotate_item():
 func place_item():
 	if not can_place or not current_slot:
 		return
+	
+	emit_signal("item_placed", item_held)
 		
 	var calculated_grid_id = current_slot.slot_ID + icon_anchor.x * col_count + icon_anchor.y
 	item_held._snap_to(grid_array[calculated_grid_id].global_position)
@@ -135,6 +140,7 @@ func pick_item():
 	item_held.selected = true
 	
 	item_held.z_index = 5
+	emit_signal("item_picked_up", item_held)
 	
 	item_held.get_parent().remove_child(item_held)
 	add_child(item_held)
@@ -189,3 +195,13 @@ func spawn_item_to_inventory(item_id: int) -> bool:
 	new_item.queue_free()
 	item_held = null
 	return false
+
+
+func _on_item_picked_up(item: Variant) -> void:
+	item.selected = true
+	item_held = item
+
+
+func _on_item_placed(item: Variant) -> void:
+	item.selected = false
+	item_held = null
