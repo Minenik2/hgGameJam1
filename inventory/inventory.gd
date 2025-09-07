@@ -15,6 +15,7 @@ var icon_anchor : Vector2
 func _ready() -> void:
 	for i in range(64):
 		create_slot()
+	await get_tree().process_frame
 	spawn_item_to_inventory(1)
 	spawn_item_to_inventory(1)
 
@@ -152,7 +153,12 @@ func spawn_item_to_inventory(item_id: int) -> bool:
 		check_slot_availability(slot)
 
 		if can_place:
+			for grid in item_held.item_grids:
+				if grid[1] < icon_anchor.x: icon_anchor.x = grid[1]
+				if grid[0] < icon_anchor.y: icon_anchor.y = grid[0]
+			
 			var calculated_grid_id = slot.slot_ID + icon_anchor.x * col_count + icon_anchor.y
+			print(grid_array[calculated_grid_id].global_position)
 			var destination = grid_array[calculated_grid_id].global_position
 			if int(rotation_degrees) % 100 == 0:
 				destination += new_item.iconRect_path.size
