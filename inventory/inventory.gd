@@ -29,7 +29,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if item_held:
-		if Input.is_action_just_pressed("rotate"):
+		if Input.is_action_just_pressed("rotate") and scroll_container.get_global_rect().has_point(get_global_mouse_position()):
 			rotate_item()
 			
 		if Input.is_action_just_pressed("interact"):
