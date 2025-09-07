@@ -8,8 +8,8 @@ signal found_bite
 @export var float_speed := 2.0
 
 # how long til the fish bites between
-var wait_time_min := 1.0
-var wait_time_max := 3.0
+var wait_time_min = Database.wait_time_min
+var wait_time_max = Database.wait_time_max
 
 var float_timer := 0.0
 
