@@ -23,9 +23,6 @@ func _ready() -> void:
 	col_count = grid_container.columns
 	for i in range(column_count * rows):
 		create_slot()
-	await get_tree().process_frame
-	spawn_item_to_inventory(1)
-	spawn_item_to_inventory(1)
 
 func _process(delta: float) -> void:
 	if item_held:
@@ -57,14 +54,6 @@ func _on_slot_mouse_entered(a_slot):
 
 func _on_slot_mouse_exited(a_slot):
 	clear_grid()
-
-
-func _on_button_spawn_pressed() -> void:
-	var new_item = item_scene.instantiate()
-	$"../..".add_child(new_item)
-	new_item.load_item(1)
-	new_item.selected = true
-	item_held = new_item
 
 func check_slot_availability(a_slot) -> void:
 	for grid in item_held.item_grids:

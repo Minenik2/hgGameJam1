@@ -28,6 +28,7 @@ GameSettingManager="*res://pause_menu/gameSettingManager/game_setting_manager.ts
 Tooltip="*res://ui/tooltip/tooltip.tscn"
 DialogueDisplay="*res://dialogue/dialogue_display.tscn"
 FishRewardUi="*res://fishingSystem/rewardUI/fish_reward_ui.tscn"
+LootScene="*res://inventory/combined_inventories/loot_scene.tscn"
 PauseMenu="*res://pause_menu/pause_menu.tscn"
 DeathScreen="*res://ui/deathScreen/death_screen.tscn"
 DataHandler="*res://inventory/data/dataHandler.gd"

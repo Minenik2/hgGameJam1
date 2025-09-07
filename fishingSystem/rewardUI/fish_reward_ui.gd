@@ -17,9 +17,10 @@ func caught() -> void:
 
 func _on_button_pressed() -> void:
 	AudioManager.playMenuClick()
-	PauseMenu.playerInteracting = false
 	$".".hide()
+	PauseMenu.playerInteracting = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	LootScene.startLoot()
 	
 func updateText(fishData: FishData):
 	var fishDataDict = fishData.generate_instance()

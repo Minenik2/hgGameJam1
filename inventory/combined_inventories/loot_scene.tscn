@@ -1,29 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsjw4dnrto7p7"]
+[gd_scene load_steps=3 format=3 uid="uid://bsjw4dnrto7p7"]
 
 [ext_resource type="PackedScene" uid="uid://b4f7svei6orof" path="res://inventory/inventory.tscn" id="1_ugvoa"]
+[ext_resource type="Script" uid="uid://b7a02n0n7pv02" path="res://inventory/combined_inventories/loot_scene_manager.gd" id="1_wcvx8"]
 
 [node name="loot_scene" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_wcvx8")
 
-[node name="inventory" parent="." instance=ExtResource("1_ugvoa")]
-anchors_preset = 11
-anchor_left = 1.0
-offset_left = -301.0
-grow_horizontal = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Reward"
+horizontal_alignment = 1
+
+[node name="inventory2" parent="HBoxContainer/MarginContainer2/VBoxContainer" instance=ExtResource("1_ugvoa")]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 column_count = 4
-rows = 5
 
-[node name="inventory2" parent="." instance=ExtResource("1_ugvoa")]
-anchors_preset = 9
-anchor_right = 0.0
-offset_right = 295.0
-grow_horizontal = 1
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="done" type="Button" parent="HBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/outline_size = 6
+text = "Done"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Player Inventory"
+horizontal_alignment = 1
+
+[node name="inventory" parent="HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_ugvoa")]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 column_count = 4
+rows = 6
 
-[connection signal="item_picked_up" from="inventory" to="inventory2" method="_on_item_picked_up"]
-[connection signal="item_placed" from="inventory" to="inventory2" method="_on_item_placed"]
-[connection signal="item_picked_up" from="inventory2" to="inventory" method="_on_item_picked_up"]
-[connection signal="item_placed" from="inventory2" to="inventory" method="_on_item_placed"]
+[connection signal="item_picked_up" from="HBoxContainer/MarginContainer2/VBoxContainer/inventory2" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_picked_up"]
+[connection signal="item_placed" from="HBoxContainer/MarginContainer2/VBoxContainer/inventory2" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_placed"]
+[connection signal="button_down" from="HBoxContainer/MarginContainer3/done" to="." method="_on_done_button_down"]
+[connection signal="item_picked_up" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/VBoxContainer/inventory2" method="_on_item_picked_up"]
+[connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/VBoxContainer/inventory2" method="_on_item_placed"]

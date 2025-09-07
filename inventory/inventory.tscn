@@ -37,16 +37,6 @@ layout_mode = 2
 [node name="header" type="HBoxContainer" parent="ColorRect/inventoryGrid/VBoxContainer"]
 layout_mode = 2
 
-[node name="title" type="Label" parent="ColorRect/inventoryGrid/VBoxContainer/header"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Inventory"
-
-[node name="Button_Spawn" type="Button" parent="ColorRect/inventoryGrid/VBoxContainer/header"]
-layout_mode = 2
-theme_override_constants/outline_size = 6
-text = "Back"
-
 [node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/inventoryGrid/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -58,5 +48,3 @@ size_flags_vertical = 4
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 6
-
-[connection signal="pressed" from="ColorRect/inventoryGrid/VBoxContainer/header/Button_Spawn" to="ColorRect/inventoryGrid" method="_on_button_spawn_pressed"]
