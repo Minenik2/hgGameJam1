@@ -3,7 +3,6 @@ extends Area3D
 @export var dialogue_resource: JSON
 @export var player: CharacterBody3D
 @export var destroy: bool = false
-@export var trigger_event: bool = false # only for the knife sequence in ending
 
 @export_group("Teleporter Settings")
 @export var teleporter: bool = false
@@ -48,23 +47,21 @@ func dialogue_started():
 	Tooltip.hide()
 	player.velocity = Vector3(0, 0, 0)
 	player.is_interacting = true
-	PauseMenu.playerInteracting = true # TODO FIX TAB BUG
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	MouseManager.show_mouse()
 
 # will be called when the dialogue ends
 func dialogue_ended():
 	DialogueDisplay.hide()
 	Tooltip.show()
-	PauseMenu.playerInteracting = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	MouseManager.hide_mouse()
 	# small hump so that the player doesnt jump when ending dialogue with space
 	await get_tree().create_timer(0.2).timeout
 	player.is_interacting = false
 
-func _on_body_entered(body: Node3D) -> void:
+func _on_body_entered(_body: Node3D) -> void:
 	Tooltip.show()
 	canInteract = true
 
-func _on_body_exited(body: Node3D) -> void:
+func _on_body_exited(_body: Node3D) -> void:
 	Tooltip.hide()
 	canInteract = false

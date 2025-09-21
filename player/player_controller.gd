@@ -32,7 +32,6 @@ func _unhandled_input(event):
 		camera.rotation.x = pitch
 
 func _physics_process(delta):
-	var velocity = self.velocity
 	step_timer -= delta # step sound
 
 	# Apply gravity

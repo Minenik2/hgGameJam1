@@ -12,7 +12,7 @@ config_version=5
 
 config/name="hgGameJam1"
 run/main_scene="uid://bhmnj7f6ij3l2"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://8dtubc8j487a"
 config/icon="uid://cc0sjyne4637p"
@@ -32,6 +32,7 @@ LootScene="*res://inventory/combined_inventories/loot_scene.tscn"
 PauseMenu="*res://pause_menu/pause_menu.tscn"
 DeathScreen="*res://ui/deathScreen/death_screen.tscn"
 DataHandler="*res://inventory/data/dataHandler.gd"
+MouseManager="*res://player/mouseManager.gd"
 Database="*res://database/Database.gd"
 
 [display]

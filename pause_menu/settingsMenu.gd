@@ -7,8 +7,6 @@ extends CanvasLayer
 
 var menu_visible := false
 
-var playerInteracting = false
-
 # Define ranges
 const MIN_SENSITIVITY := 0.001
 const MAX_SENSITIVITY := 0.010
@@ -48,9 +46,9 @@ func _toggle_menu():
 	
 	# Control mouse capture
 	if menu_visible:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	elif !playerInteracting:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		MouseManager.show_mouse()
+	else:
+		MouseManager.hide_mouse()
 
 func _on_sensitivity_changed(value: float):
 	GameSettingManager.set_mouse_sensitivity(value)

@@ -12,16 +12,14 @@ extends CanvasLayer
 var currentFish: FishData
 
 func caught() -> void:
-	PauseMenu.playerInteracting = true
 	updateText($Panel.roll_loot())
 	$".".show()
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	MouseManager.show_mouse()
 
 func _on_button_pressed() -> void:
 	AudioManager.playMenuClick()
 	$".".hide()
-	PauseMenu.playerInteracting = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	MouseManager.hide_mouse()
 	LootScene.startLoot(currentFish)
 	
 func updateText(fishData: FishData):

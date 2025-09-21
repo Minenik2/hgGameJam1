@@ -9,10 +9,9 @@ func _on_done_button_down() -> void:
 	closeUi()
 
 func startLoot(currentFish: FishData) -> void:
-	PauseMenu.playerInteracting = true
 	$HBoxContainer/MarginContainer2/VBoxContainer.show()
 	show()
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	MouseManager.show_mouse()
 	inventoryReward.clear_inventory()
 	inventoryReward.active = true
 	inventoryPlayer.active = true
@@ -29,8 +28,7 @@ func closeUi():
 	hide()
 	inventoryReward.active = false
 	inventoryPlayer.active = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	PauseMenu.playerInteracting = false
+	MouseManager.hide_mouse()
 
 func fillStats():
 	$HBoxContainer/MarginContainer2/playerStats/statMoney.text = "IKO: " + str(Database.money)
@@ -39,11 +37,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		if visible:
 			closeUi()
-		elif !PauseMenu.playerInteracting:
+		else:
+			AudioManager.playMenuClick()
 			$HBoxContainer/MarginContainer2/VBoxContainer.hide()
 			player_stats.show()
 			show()
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			PauseMenu.playerInteracting = true
+			MouseManager.show_mouse()
 			inventoryPlayer.active = true
 			
