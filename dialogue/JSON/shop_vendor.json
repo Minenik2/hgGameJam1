@@ -1,6 +1,6 @@
 [
 	{
-		"commands_raw": "Have you and EVE dredged up anything worthwhile from the flood?\n---\n\n?> We're still searching -> searching\n?> I've caught some fish -> fish",
+		"commands_raw": "$if !talkedMarbas {\nHave you and Sitri dredged up anything worthwhile from the flood?\n---\n\n?> I've caught some fish -> fish\n?> We're still searching -> searching\n}\n$else {\nBack again. What is it this time, Morgan?\n\n?> I want to sell fish -> openShop\n?> I want to upgrade my gear -> upgrade\n?> My memory slips, could you remind me? -> lore\n?> Nothing. I'll move on -> end\n}",
 		"gnode_name": "start",
 		"id": 0.0,
 		"name": "start",
@@ -20,13 +20,63 @@
 		]
 	},
 	{
-		"commands_raw": "Great, load those peskers on the trunk. I'll strip what value clings to their bones and pass you the IKOs\n---\n$signal(globalSignal,shopUI)",
+		"commands_raw": "Great, load those peskers on the trunk. I'll strip what value clings to their bones and pass you the IKOs\n---\nsignal(set,talkedMarbas,true)\n-> openShop",
 		"gnode_name": "fish",
 		"id": 2.0,
 		"name": "fish",
 		"position": [
 			400.0,
 			340.0
+		]
+	},
+	{
+		"commands_raw": "signal(globalSignal,shopUI)",
+		"gnode_name": "openshop",
+		"id": 3.0,
+		"name": "openShop",
+		"position": [
+			500.0,
+			440.0
+		]
+	},
+	{
+		"commands_raw": "$if lore {\n    Anything else you would like to know?\n}\n$else {\n    Really? Anything specific you want to know?\n}\n?> What is this place? -> place\n?> Nevermind -> start",
+		"gnode_name": "lore",
+		"id": 4.0,
+		"name": "lore",
+		"position": [
+			380.0,
+			160.0
+		]
+	},
+	{
+		"commands_raw": "This place?\n---\nThat fight with the wireback must have gotten you good...\n---\nThis is a megastructure Morgan, what remains of humanity's greatest adapation - itself.\n---\nsignal(set,lore,true)\n-> lore",
+		"gnode_name": "place",
+		"id": 5.0,
+		"name": "place",
+		"position": [
+			580.0,
+			140.0
+		]
+	},
+	{
+		"commands_raw": "",
+		"gnode_name": "end",
+		"id": 6.0,
+		"name": "end",
+		"position": [
+			320.0,
+			520.0
+		]
+	},
+	{
+		"commands_raw": "signal(globalSignal,upgradeUI)",
+		"gnode_name": "upgrade",
+		"id": 7.0,
+		"name": "upgrade",
+		"position": [
+			0.0,
+			0.0
 		]
 	}
 ]

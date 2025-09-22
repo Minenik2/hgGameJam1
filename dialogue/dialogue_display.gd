@@ -1,5 +1,7 @@
 extends CanvasLayer
 const DEFAULT_STATE := {
+	talkedMarbas = false,
+	talkedSitri = false
 }
 
 @onready var state = DEFAULT_STATE.duplicate()

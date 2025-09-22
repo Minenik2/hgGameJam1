@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsjw4dnrto7p7"]
+[gd_scene load_steps=5 format=3 uid="uid://bsjw4dnrto7p7"]
 
 [ext_resource type="PackedScene" uid="uid://b4f7svei6orof" path="res://inventory/inventory.tscn" id="1_ugvoa"]
 [ext_resource type="Script" uid="uid://b7a02n0n7pv02" path="res://inventory/combined_inventories/loot_scene_manager.gd" id="1_wcvx8"]
 [ext_resource type="Script" uid="uid://cd4kgi8nx7f7c" path="res://inventory/combined_inventories/shop_component.gd" id="3_vhf8b"]
+[ext_resource type="PackedScene" uid="uid://k3tk4cwn4yi6" path="res://ui/upgradeShop/upgrade_shop.tscn" id="4_whs0q"]
 
 [node name="loot_scene" type="CanvasLayer"]
 visible = false
@@ -51,7 +52,7 @@ script = ExtResource("3_vhf8b")
 [node name="title" type="Label" parent="HBoxContainer/MarginContainer2/shop"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Shop"
+text = "Marbas"
 horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/MarginContainer2/shop"]
@@ -120,6 +121,9 @@ size_flags_vertical = 3
 column_count = 4
 rows = 6
 
+[node name="upgradeShop" parent="." instance=ExtResource("4_whs0q")]
+visible = false
+
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_picked_up"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_placed"]
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer2/shop/inventoryShop" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_picked_up"]
@@ -132,3 +136,4 @@ rows = 6
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/shop/inventoryShop" method="_on_item_picked_up"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" method="_on_item_placed"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/shop/inventoryShop" method="_on_item_placed"]
+[connection signal="donePressed" from="upgradeShop" to="." method="_on_upgrade_shop_done_pressed"]

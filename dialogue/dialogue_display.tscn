@@ -91,7 +91,7 @@ bbcode_enabled = true
 text = "test"
 
 [node name="EndSymbol" type="Label" parent="DialogueBox/VBoxContainer/TextboxContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(9, 0)
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_vertical = 1
 text = "v"

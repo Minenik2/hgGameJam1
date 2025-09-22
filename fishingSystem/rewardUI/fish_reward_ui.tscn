@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bh7fuo8fhlo7g"]
+[gd_scene load_steps=5 format=3 uid="uid://bh7fuo8fhlo7g"]
 
 [ext_resource type="Texture2D" uid="uid://y7q8og2k5wy5" path="res://art/fish/bigf.png" id="1_0ayv6"]
 [ext_resource type="Script" uid="uid://bdw4yv67ag7u4" path="res://fishingSystem/rewardUI/fish_reward_ui.gd" id="1_2fq2s"]
 [ext_resource type="Texture2D" uid="uid://33gwbj54isjt" path="res://art/ui/grungu.png" id="1_rxadu"]
-[ext_resource type="Script" uid="uid://bwlvlpb66kptb" path="res://fishingSystem/rewardUI/gacha.gd" id="2_b8bsb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxadu"]
 bg_color = Color(0.133333, 0.137255, 0.137255, 0.454902)
@@ -24,7 +23,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rxadu")
-script = ExtResource("2_b8bsb")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1

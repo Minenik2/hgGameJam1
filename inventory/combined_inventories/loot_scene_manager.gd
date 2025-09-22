@@ -14,6 +14,7 @@ func _on_done_button_down() -> void:
 
 func startLoot(currentFish: FishData) -> void:
 	hide_all()
+	$HBoxContainer.show()
 	$HBoxContainer/MarginContainer2/VBoxContainer.show()
 	show()
 	MouseManager.show_mouse()
@@ -32,6 +33,7 @@ func closeUi():
 	hide_all()
 	hide()
 	MouseManager.hide_mouse()
+	$HBoxContainer.show()
 
 func fillStats():
 	$HBoxContainer/MarginContainer2/playerStats/statMoney.text = "IKO: " + str(Database.money)
@@ -53,6 +55,7 @@ func hide_all():
 	$HBoxContainer/MarginContainer2/VBoxContainer.hide() # reward ui
 	$HBoxContainer/MarginContainer2/playerStats.hide()
 	$HBoxContainer/MarginContainer2/shop.hide()
+	$upgradeShop.hide()
 	
 	inventoryReward.active = false
 	inventoryPlayer.active = false
@@ -60,6 +63,7 @@ func hide_all():
 
 func startShop():
 	hide_all()
+	$HBoxContainer/MarginContainer2/shop.updateVisual()
 	$HBoxContainer/MarginContainer2/shop.show()
 	show()
 	MouseManager.show_mouse()
@@ -69,3 +73,15 @@ func startShop():
 func on_dialogue_signal(command):
 	if command == "shopUI":
 		startShop()
+	elif command == "upgradeUI":
+		startUpgrades()
+
+func startUpgrades():
+	hide_all()
+	$HBoxContainer.hide()
+	$upgradeShop.show()
+	show()
+	MouseManager.show_mouse()
+
+func _on_upgrade_shop_done_pressed() -> void:
+	closeUi()

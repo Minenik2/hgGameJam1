@@ -1,0 +1,132 @@
+[gd_scene load_steps=5 format=3 uid="uid://k3tk4cwn4yi6"]
+
+[ext_resource type="Texture2D" uid="uid://c4n7ttistwwcq" path="res://art/icons/rod.png" id="1_aqr6k"]
+[ext_resource type="Script" uid="uid://dc74liy3rgd8w" path="res://ui/upgradeShop/upgrade_shop.gd" id="1_m53qk"]
+[ext_resource type="Texture2D" uid="uid://n7yf10cvgk78" path="res://art/icons/bait.png" id="2_m53qk"]
+[ext_resource type="Texture2D" uid="uid://cj50pggdhk2xt" path="res://art/icons/wire.png" id="3_aqr6k"]
+
+[node name="upgradeShop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m53qk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="rod" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 6
+text = "Circuit Rod
+0/3"
+icon = ExtResource("1_aqr6k")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="bait" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 6
+text = "Splick Bait
+0/3"
+icon = ExtResource("2_m53qk")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="wire" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 6
+text = "Vein Wire
+0/3"
+icon = ExtResource("3_aqr6k")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+alignment = 1
+
+[node name="Info" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Select upgrade"
+horizontal_alignment = 1
+
+[node name="cost" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 6
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+
+[node name="powerInfo" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 6
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="done" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+text = "Done"
+
+[connection signal="mouse_entered" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/rod" to="." method="_on_rod_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/rod" to="." method="_on_rod_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/bait" to="." method="_on_bait_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/bait" to="." method="_on_bait_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/wire" to="." method="_on_wire_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/wire" to="." method="_on_wire_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/done" to="." method="_on_done_pressed"]

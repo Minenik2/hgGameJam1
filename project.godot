@@ -34,6 +34,7 @@ DeathScreen="*res://ui/deathScreen/death_screen.tscn"
 DataHandler="*res://inventory/data/dataHandler.gd"
 MouseManager="*res://player/mouseManager.gd"
 Database="*res://database/Database.gd"
+Gacha="*res://fishingSystem/rewardUI/gacha.gd"
 
 [display]
 

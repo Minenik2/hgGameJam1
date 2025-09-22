@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=4 uid="uid://bhmnj7f6ij3l2"]
+[gd_scene load_steps=103 format=4 uid="uid://bhmnj7f6ij3l2"]
 
 [ext_resource type="Script" uid="uid://bmbsdc6dai5ag" path="res://pulsing light/light_pulse.gd" id="1_gejl7"]
 [ext_resource type="Material" uid="uid://df50hnkcqs2l3" path="res://material/simple_outline.tres" id="1_t7i0g"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://charfi87c13g0" path="res://art/EVE.png" id="10_nqc1o"]
 [ext_resource type="Script" uid="uid://dbfirngg2s574" path="res://npc/npc_sprite_look_at_player.gd" id="11_nam08"]
 [ext_resource type="JSON" path="res://dialogue/JSON/shop_vendor.json" id="12_22wd6"]
+[ext_resource type="Texture2D" uid="uid://dbng14an48r6c" path="res://art/marbas.png" id="13_xxc1d"]
 
 [sub_resource type="Gradient" id="Gradient_rgyd3"]
 interpolation_mode = 2
@@ -1816,6 +1817,13 @@ player = NodePath("../playerController")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9970245, -1.7097168, -1.1202698)
 shape = SubResource("BoxShape3D_nam08")
 debug_color = Color(0.31274292, 0.6161, 0.33340767, 0.41960785)
+
+[node name="npc_sprite_marbas" type="Sprite3D" parent="SubViewportContainer/SubViewport/interactionArea2" node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.198532, -2.25449, -2.6462936)
+flip_h = true
+texture = ExtResource("13_xxc1d")
+script = ExtResource("11_nam08")
+player = NodePath("../../playerController")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 texture_filter = 1

@@ -12,7 +12,7 @@ extends CanvasLayer
 var currentFish: FishData
 
 func caught() -> void:
-	updateText($Panel.roll_loot())
+	updateText(Gacha.roll_loot())
 	$".".show()
 	MouseManager.show_mouse()
 
