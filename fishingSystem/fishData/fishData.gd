@@ -25,6 +25,8 @@ enum RARITY {
 @export var grid: String
 @export var item_id: int
 
+var fishDataDict: Dictionary
+
 func generate_instance() -> Dictionary:
 	var rng = RandomNumberGenerator.new()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://nng8xjwuo33y"]
+[gd_scene load_steps=12 format=3 uid="uid://nng8xjwuo33y"]
 
 [ext_resource type="Script" uid="uid://ciasf0sdjnpmv" path="res://audioManager/audio_manager.gd" id="1_vwd0j"]
 [ext_resource type="AudioStream" uid="uid://6vn5ka70aw1b" path="res://audio/attic.wav" id="2_0rjh3"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://pctsgjvcol85" path="res://audio/sfx/fishShape/pickUpCommon.wav" id="8_rmedq"]
 [ext_resource type="AudioStream" uid="uid://b3ge34xfx7avs" path="res://audio/sfx/fishShape/pickUpRare.wav" id="9_3iii8"]
 [ext_resource type="AudioStream" uid="uid://dy3bp3r7ethf3" path="res://audio/sfx/fishShape/pickUpLegendary.wav" id="10_fpdjf"]
+[ext_resource type="AudioStream" uid="uid://b4t14dvoi780e" path="res://audio/sfx/shop/sell.ogg" id="11_nm4b7"]
 
 [node name="AudioManager" type="AudioStreamPlayer" node_paths=PackedStringArray("music_player")]
 volume_db = -30.0
@@ -87,3 +88,9 @@ pitch_scale = 1.4
 stream = ExtResource("8_rmedq")
 volume_db = -7.0
 pitch_scale = 1.3
+
+[node name="shop" type="Node" parent="."]
+
+[node name="sell" type="AudioStreamPlayer" parent="shop"]
+stream = ExtResource("11_nm4b7")
+volume_db = -10.0

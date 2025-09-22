@@ -19,7 +19,7 @@ var landed_enabled := false
 var is_interacting = false
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	MouseManager.try_hide_mouse()
 	# Enable landing detection after 0.1 sec
 	await get_tree().create_timer(0.1).timeout
 	landed_enabled = true

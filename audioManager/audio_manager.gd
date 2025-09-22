@@ -78,3 +78,6 @@ func playPickUpLegendary():
 
 func playDropLegendary():
 	$fishLoot/dropLegendary.play()
+
+func playShopSell():
+	$shop/sell.play()

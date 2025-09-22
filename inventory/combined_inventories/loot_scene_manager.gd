@@ -1,14 +1,19 @@
 extends CanvasLayer
 @onready var inventoryPlayer: Control = $HBoxContainer/MarginContainer/VBoxContainer/inventory
-@onready var inventoryReward: Control = $HBoxContainer/MarginContainer2/VBoxContainer/inventory2
+@onready var inventoryReward: Control = $HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward
+@onready var inventoryShop: Control = $HBoxContainer/MarginContainer2/shop/inventoryShop
 
 @onready var player_stats: VBoxContainer = $HBoxContainer/MarginContainer2/playerStats
 
+
+func _ready() -> void:
+	DialogueDisplay.connect("global_signal", on_dialogue_signal)
 
 func _on_done_button_down() -> void:
 	closeUi()
 
 func startLoot(currentFish: FishData) -> void:
+	hide_all()
 	$HBoxContainer/MarginContainer2/VBoxContainer.show()
 	show()
 	MouseManager.show_mouse()
@@ -24,10 +29,8 @@ func startLoot(currentFish: FishData) -> void:
 
 func closeUi():
 	AudioManager.playMenuClick()
-	$HBoxContainer/MarginContainer2/playerStats.hide()
+	hide_all()
 	hide()
-	inventoryReward.active = false
-	inventoryPlayer.active = false
 	MouseManager.hide_mouse()
 
 func fillStats():
@@ -39,9 +42,30 @@ func _unhandled_input(event: InputEvent) -> void:
 			closeUi()
 		else:
 			AudioManager.playMenuClick()
-			$HBoxContainer/MarginContainer2/VBoxContainer.hide()
+			$HBoxContainer/MarginContainer2/playerStats/statMoney.text = "IKO: " + str(Database.money)
+			hide_all()
 			player_stats.show()
 			show()
 			MouseManager.show_mouse()
 			inventoryPlayer.active = true
-			
+
+func hide_all():
+	$HBoxContainer/MarginContainer2/VBoxContainer.hide() # reward ui
+	$HBoxContainer/MarginContainer2/playerStats.hide()
+	$HBoxContainer/MarginContainer2/shop.hide()
+	
+	inventoryReward.active = false
+	inventoryPlayer.active = false
+	inventoryShop.active = false
+
+func startShop():
+	hide_all()
+	$HBoxContainer/MarginContainer2/shop.show()
+	show()
+	MouseManager.show_mouse()
+	inventoryShop.active = true
+	inventoryPlayer.active = true
+
+func on_dialogue_signal(command):
+	if command == "shopUI":
+		startShop()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://bhmnj7f6ij3l2"]
+[gd_scene load_steps=102 format=4 uid="uid://bhmnj7f6ij3l2"]
 
 [ext_resource type="Script" uid="uid://bmbsdc6dai5ag" path="res://pulsing light/light_pulse.gd" id="1_gejl7"]
 [ext_resource type="Material" uid="uid://df50hnkcqs2l3" path="res://material/simple_outline.tres" id="1_t7i0g"]
@@ -12,6 +12,7 @@
 [ext_resource type="JSON" path="res://dialogue/JSON/greet.json" id="8_7a6jc"]
 [ext_resource type="Texture2D" uid="uid://charfi87c13g0" path="res://art/EVE.png" id="10_nqc1o"]
 [ext_resource type="Script" uid="uid://dbfirngg2s574" path="res://npc/npc_sprite_look_at_player.gd" id="11_nam08"]
+[ext_resource type="JSON" path="res://dialogue/JSON/shop_vendor.json" id="12_22wd6"]
 
 [sub_resource type="Gradient" id="Gradient_rgyd3"]
 interpolation_mode = 2
@@ -1359,6 +1360,9 @@ size = Vector3(25.2706, 14.6575, 1.53906)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7a6jc"]
 size = Vector3(4.77832, 4.08618, 5.17145)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nam08"]
+size = Vector3(5.295685, 4.4194336, 4.4067993)
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_5ruyq"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
@@ -1802,6 +1806,16 @@ flip_h = true
 texture = ExtResource("10_nqc1o")
 script = ExtResource("11_nam08")
 player = NodePath("../../playerController")
+
+[node name="interactionArea2" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("7_my31x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6113997, 5.9395533, -44.316658)
+dialogue_resource = ExtResource("12_22wd6")
+player = NodePath("../playerController")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/interactionArea2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9970245, -1.7097168, -1.1202698)
+shape = SubResource("BoxShape3D_nam08")
+debug_color = Color(0.31274292, 0.6161, 0.33340767, 0.41960785)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 texture_filter = 1

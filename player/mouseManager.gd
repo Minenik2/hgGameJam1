@@ -13,3 +13,7 @@ func hide_mouse():
 	interactions.pop_back()
 	if interactions.is_empty():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func try_hide_mouse():
+	if interactions.is_empty():
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

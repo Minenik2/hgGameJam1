@@ -5,11 +5,8 @@ const DEFAULT_STATE := {
 @onready var state = DEFAULT_STATE.duplicate()
 
 signal dialogue_ended
-signal cutscene_start
+signal global_signal
 
-#func _ready() -> void:
-	
-	
 func start_dialogue(dialogue_json: JSON):
 	$DialogueBox.is_dialogue_done = false
 	($EzDialogue as EzDialogue).start_dialogue(dialogue_json, state)
@@ -31,6 +28,9 @@ func _on_ez_dialogue_custom_signal_received(value: Variant) -> void:
 		var variable_name = params[1]
 		var variable_value = params[2]
 		state[variable_name] = variable_value
+	elif params[0] == "globalSignal":
+		var variable_pass = params[1] # this value will be passed with the signal
+		global_signal.emit(variable_pass)
 
 
 func _on_ez_dialogue_end_of_dialogue_reached() -> void:

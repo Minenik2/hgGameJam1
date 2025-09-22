@@ -15,6 +15,8 @@ extends Area3D
 @export_file("*.tscn") var target_scene: String
 
 var canInteract = false
+# to fix multiple interaction areas in one enviroment
+var dialogueStarted = false
 
 
 func _ready():
@@ -48,15 +50,18 @@ func dialogue_started():
 	player.velocity = Vector3(0, 0, 0)
 	player.is_interacting = true
 	MouseManager.show_mouse()
+	dialogueStarted = true
 
 # will be called when the dialogue ends
 func dialogue_ended():
-	DialogueDisplay.hide()
-	Tooltip.show()
-	MouseManager.hide_mouse()
-	# small hump so that the player doesnt jump when ending dialogue with space
-	await get_tree().create_timer(0.2).timeout
-	player.is_interacting = false
+	if dialogueStarted:
+		DialogueDisplay.hide()
+		Tooltip.show()
+		MouseManager.hide_mouse()
+		# small hump so that the player doesnt jump when ending dialogue with space
+		await get_tree().create_timer(0.2).timeout
+		player.is_interacting = false
+		dialogueStarted = false
 
 func _on_body_entered(_body: Node3D) -> void:
 	Tooltip.show()

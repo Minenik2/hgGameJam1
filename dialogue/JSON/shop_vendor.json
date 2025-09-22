@@ -1,0 +1,32 @@
+[
+	{
+		"commands_raw": "Have you and EVE dredged up anything worthwhile from the flood?\n---\n\n?> We're still searching -> searching\n?> I've caught some fish -> fish",
+		"gnode_name": "start",
+		"id": 0.0,
+		"name": "start",
+		"position": [
+			240.0,
+			300.0
+		]
+	},
+	{
+		"commands_raw": "Then don't waste my breath. Go find us something we can survive off\n---",
+		"gnode_name": "searching",
+		"id": 1.0,
+		"name": "searching",
+		"position": [
+			400.0,
+			260.0
+		]
+	},
+	{
+		"commands_raw": "Great, load those peskers on the trunk. I'll strip what value clings to their bones and pass you the IKOs\n---\n$signal(globalSignal,shopUI)",
+		"gnode_name": "fish",
+		"id": 2.0,
+		"name": "fish",
+		"position": [
+			400.0,
+			340.0
+		]
+	}
+]
