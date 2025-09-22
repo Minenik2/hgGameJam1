@@ -19,8 +19,8 @@ func caught() -> void:
 func _on_button_pressed() -> void:
 	AudioManager.playMenuClick()
 	$".".hide()
-	MouseManager.hide_mouse()
 	LootScene.startLoot(currentFish)
+	MouseManager.hide_mouse()
 	
 func updateText(fishData: FishData):
 	var fishDataDict = fishData.generate_instance()

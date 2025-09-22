@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://hhr5fhyhxf52"]
+
+[ext_resource type="Script" uid="uid://cee0suigo65je" path="res://main_menu/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://dnxb8wjk5xc61" path="res://main_menu/title.gd" id="2_ekxnf"]
+[ext_resource type="Shader" uid="uid://diow28hope6d2" path="res://main_menu/main_menu.gdshader" id="2_wu84c"]
+[ext_resource type="Texture2D" uid="uid://bxyynubgb8ttg" path="res://art/splash.jpg" id="3_3f7m4"]
+[ext_resource type="Shader" uid="uid://cnt65e5j3ljvm" path="res://main_menu/blurShader.gdshader" id="5_3f7m4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ln24"]
+shader = ExtResource("2_wu84c")
+shader_parameter/viewport_size = Vector2(0, 0)
+shader_parameter/mouse_pos = Vector2(0, 0)
+shader_parameter/time = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtw2f"]
+shader = ExtResource("5_3f7m4")
+shader_parameter/blur_amount = 5.0
+
+[node name="Main Menu" type="CanvasLayer"]
+script = ExtResource("1_l6cm7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_8ln24")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3f7m4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="title" type="Label" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 100
+text = "ESiON"
+horizontal_alignment = 1
+script = ExtResource("2_ekxnf")
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "< S T A R T >"
+
+[node name="blur" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_rtw2f")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_3f7m4")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -30.0
+offset_right = 127.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "Made by Minenik"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
