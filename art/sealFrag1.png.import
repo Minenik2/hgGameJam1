@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm8opf2fqwyht"
-path="res://.godot/imported/eel.png-4800a5908c175544540c792f7f566ea5.ctex"
+uid="uid://dyjivpfl4mspa"
+path="res://.godot/imported/sealFrag1.png-d5368d887e482af8857352050b4a6eb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/fish/eel.png"
-dest_files=["res://.godot/imported/eel.png-4800a5908c175544540c792f7f566ea5.ctex"]
+source_file="res://art/sealFrag1.png"
+dest_files=["res://.godot/imported/sealFrag1.png-d5368d887e482af8857352050b4a6eb3.ctex"]
 
 [params]
 

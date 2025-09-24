@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm8opf2fqwyht"
-path="res://.godot/imported/eel.png-4800a5908c175544540c792f7f566ea5.ctex"
+uid="uid://xxx7schvw3y"
+path="res://.godot/imported/swordfish.png-7a11d51900a8cc7ad7607f324d633f15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/fish/eel.png"
-dest_files=["res://.godot/imported/eel.png-4800a5908c175544540c792f7f566ea5.ctex"]
+source_file="res://art/fish/swordfish.png"
+dest_files=["res://.godot/imported/swordfish.png-7a11d51900a8cc7ad7607f324d633f15.ctex"]
 
 [params]
 

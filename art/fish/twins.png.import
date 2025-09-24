@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm8opf2fqwyht"
-path="res://.godot/imported/eel.png-4800a5908c175544540c792f7f566ea5.ctex"
+uid="uid://bfj2lmxrkwvvf"
+path="res://.godot/imported/twins.png-17c83b4fd8ef193ec8167362a342ab58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/fish/eel.png"
-dest_files=["res://.godot/imported/eel.png-4800a5908c175544540c792f7f566ea5.ctex"]
+source_file="res://art/fish/twins.png"
+dest_files=["res://.godot/imported/twins.png-17c83b4fd8ef193ec8167362a342ab58.ctex"]
 
 [params]
 

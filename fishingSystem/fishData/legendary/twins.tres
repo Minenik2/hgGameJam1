@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://dephx8bnujd0w"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_6jklo"]
+[ext_resource type="Texture2D" uid="uid://bfj2lmxrkwvvf" path="res://art/fish/twins.png" id="2_6jklo"]
+
+[resource]
+script = ExtResource("1_6jklo")
+name = "Gemini Wraiths"
+base_dimension = 30.0
+dimension_variance = 20.0
+base_weight = 100.0
+weight_variance = 20.0
+base_price = 500
+price_variance = 100
+rarity = 2
+texture = ExtResource("2_6jklo")
+description = "Two conjoined fish sharing one spine, swimming in perfect mirrored rhythm. It seems like there might be a third visitor."
+item_id = 15
+metadata/_custom_type_script = "uid://coj83363ykpug"

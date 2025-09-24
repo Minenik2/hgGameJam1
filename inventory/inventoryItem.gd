@@ -20,6 +20,12 @@ func load_item(a_ItemID : int) -> void:
 	# Load texture
 	var tex: Texture2D = load(icon_path)
 	iconRect_path.texture = tex
+	
+	# change color based on rarity
+	if DataHandler.item_data[str(a_ItemID)]["Value"] == 1:
+		modulate = Color(1.255, 0.399, 1.825, 1.0)
+	elif DataHandler.item_data[str(a_ItemID)]["Value"] == 2:
+		modulate = Color(2.265, 1.21, 0.286, 1.0)
 
 	# Get PNG size
 	var image: Image = tex.get_image()

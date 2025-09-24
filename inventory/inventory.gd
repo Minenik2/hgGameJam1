@@ -111,6 +111,10 @@ func place_item():
 		return
 	if item_held.fishData.rarity == FishData.RARITY.COMMON:
 		AudioManager.playDropCommon()
+	elif item_held.fishData.rarity == FishData.RARITY.RARE:
+		AudioManager.playDropRare()
+	elif item_held.fishData.rarity == FishData.RARITY.LEGENDARY:
+		AudioManager.playDropLegendary()
 	emit_signal("item_placed", item_held)
 		
 	var calculated_grid_id = current_slot.slot_ID + icon_anchor.x * col_count + icon_anchor.y
@@ -140,8 +144,13 @@ func pick_item():
 	
 	# only using fish data for playing sound
 	# could potentially be improved to also account for grid layout but skill issue
+	# me from the future i have no idea what i meant by grid layout above
 	if item_held.fishData.rarity == FishData.RARITY.COMMON:
 		AudioManager.playPickUpCommon()
+	elif item_held.fishData.rarity == FishData.RARITY.RARE:
+		AudioManager.playPickUpRare()
+	elif item_held.fishData.rarity == FishData.RARITY.LEGENDARY:
+		AudioManager.playPickUpLegendary()
 	
 	item_held.z_index = 5
 	emit_signal("item_picked_up", item_held)
@@ -218,6 +227,10 @@ func clear_inventory() -> void:
 	can_place = false
 	icon_anchor = Vector2.ZERO
 
+func increaseRow(amount):
+	rows += amount
+	for i in range(column_count * amount):
+		create_slot()
 
 func _on_item_picked_up(item: Variant) -> void:
 	item.selected = true

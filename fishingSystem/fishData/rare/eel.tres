@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://dq10bv06wnmx8"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_6dn4t"]
+[ext_resource type="Texture2D" uid="uid://bm8opf2fqwyht" path="res://art/fish/eel.png" id="2_6y6w2"]
+
+[resource]
+script = ExtResource("1_6dn4t")
+name = "Volt Eel"
+base_dimension = 17.0
+base_weight = 1.1
+weight_variance = 0.2
+base_price = 200
+price_variance = 40
+rarity = 1
+texture = ExtResource("2_6y6w2")
+description = "Squirming in thin pipes. Outburst voltage from its skin when coming in contanct with electronic devices "
+item_id = 5
+metadata/_custom_type_script = "uid://coj83363ykpug"

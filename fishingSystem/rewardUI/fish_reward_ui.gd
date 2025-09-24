@@ -34,9 +34,12 @@ func updateText(fishData: FishData):
 	match fishDataDict["rarity"]:
 		fishData.RARITY.COMMON:
 			rarity.text = "Common"
+			texture_rect.modulate = Color(1, 1, 1, 1)
 		fishData.RARITY.RARE:
 			rarity.text = "Rare"
+			texture_rect.modulate = Color(1.255, 0.399, 1.825, 1.0)
 		fishData.RARITY.LEGENDARY:
 			rarity.text = "Legendary"
+			texture_rect.modulate = Color(2.265, 1.21, 0.286, 1.0)
 	texture_rect.texture = fishDataDict["texture"]
 	desc.text = fishDataDict["description"]

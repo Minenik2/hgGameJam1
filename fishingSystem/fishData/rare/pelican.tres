@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://cjody3ulnnwxg"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_7tmri"]
+[ext_resource type="Texture2D" uid="uid://dfreu1uby8t8u" path="res://art/fish/pelican.png" id="2_7tmri"]
+
+[resource]
+script = ExtResource("1_7tmri")
+name = "Gulmouth"
+base_dimension = 22.0
+base_weight = 7.2
+weight_variance = 0.2
+base_price = 200
+price_variance = 40
+rarity = 1
+texture = ExtResource("2_7tmri")
+description = "A grotesque, hollow-headed fish with a pouch that drags along the void. Its mouth is big enough to swallow other fish."
+item_id = 7
+metadata/_custom_type_script = "uid://coj83363ykpug"

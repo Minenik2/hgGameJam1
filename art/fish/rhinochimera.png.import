@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm8opf2fqwyht"
-path="res://.godot/imported/eel.png-4800a5908c175544540c792f7f566ea5.ctex"
+uid="uid://djx8fw7pwudeq"
+path="res://.godot/imported/rhinochimera.png-1bf41e06db1e8c6555bd827405eecfc5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/fish/eel.png"
-dest_files=["res://.godot/imported/eel.png-4800a5908c175544540c792f7f566ea5.ctex"]
+source_file="res://art/fish/rhinochimera.png"
+dest_files=["res://.godot/imported/rhinochimera.png-1bf41e06db1e8c6555bd827405eecfc5.ctex"]
 
 [params]
 

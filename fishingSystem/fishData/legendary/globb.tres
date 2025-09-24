@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://dtxm6prtsie60"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_cclp8"]
+[ext_resource type="Texture2D" uid="uid://blmlhy4cre1tt" path="res://art/fish/globb.png" id="2_cclp8"]
+
+[resource]
+script = ExtResource("1_cclp8")
+name = "Mawgel"
+base_dimension = 75.0
+dimension_variance = 20.0
+base_weight = 1.1
+weight_variance = 0.2
+base_price = 500
+price_variance = 100
+rarity = 2
+texture = ExtResource("2_cclp8")
+description = "Amorphous, spectral-like mass of shifting eyes. The eyes seems to move like liquid between the body."
+item_id = 11
+metadata/_custom_type_script = "uid://coj83363ykpug"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://bi0x4wx7in47b"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_3fq0c"]
+[ext_resource type="Texture2D" uid="uid://djx8fw7pwudeq" path="res://art/fish/rhinochimera.png" id="2_3fq0c"]
+
+[resource]
+script = ExtResource("1_3fq0c")
+name = "Horrant"
+base_dimension = 35.0
+base_weight = 15.0
+weight_variance = 0.2
+base_price = 200
+price_variance = 40
+rarity = 1
+texture = ExtResource("2_3fq0c")
+description = "Hybrid monstrosity with a plated horn, fish body, and mechanical fins. Charges blindly when hooked."
+item_id = 8
+metadata/_custom_type_script = "uid://coj83363ykpug"

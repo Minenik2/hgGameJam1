@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://csir7h22jg48o"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_cwwtr"]
+[ext_resource type="Texture2D" uid="uid://1bjr8a6igb44" path="res://art/fish/fang.png" id="2_cwwtr"]
+
+[resource]
+script = ExtResource("1_cwwtr")
+name = "Spirefang"
+base_dimension = 26.0
+dimension_variance = 5.0
+base_weight = 21.0
+weight_variance = 5.0
+base_price = 500
+price_variance = 100
+rarity = 2
+texture = ExtResource("2_cwwtr")
+description = "Predator with two massive fangs extending past its jaw. Its body is skeletal, almost architectural, like a collapsed column."
+item_id = 10
+metadata/_custom_type_script = "uid://coj83363ykpug"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://rwsu00mccy8q"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_sjkeg"]
+[ext_resource type="Texture2D" uid="uid://ch63s0fxt1b6w" path="res://art/fish/star.png" id="2_bvk10"]
+
+[resource]
+script = ExtResource("1_sjkeg")
+name = "Luminarch"
+base_dimension = 50.0
+dimension_variance = 40.0
+base_weight = 120.0
+weight_variance = 10.0
+base_price = 500
+price_variance = 100
+rarity = 2
+texture = ExtResource("2_bvk10")
+description = "Radiant fish shaped like a four-pointed star, glowing with blinding light. Seems like a living constellation."
+item_id = 13
+metadata/_custom_type_script = "uid://coj83363ykpug"

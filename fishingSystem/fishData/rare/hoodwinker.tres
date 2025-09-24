@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://bv4inqkcd5xmv"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_tieuo"]
+[ext_resource type="Texture2D" uid="uid://dpntxycbulnfs" path="res://art/fish/hoodwinker.png" id="2_tieuo"]
+
+[resource]
+script = ExtResource("1_tieuo")
+name = "Falsefin"
+base_dimension = 14.0
+base_weight = 3.5
+weight_variance = 0.2
+base_price = 200
+price_variance = 40
+rarity = 1
+texture = ExtResource("2_tieuo")
+description = "Seems like more of a bird than a fish, however on closer look its body is made of folded panels that disguise its true form."
+item_id = 6
+metadata/_custom_type_script = "uid://coj83363ykpug"

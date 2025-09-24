@@ -5,6 +5,20 @@ var greyscale: FishData = preload("res://fishingSystem/fishData/common/greyscale
 var dustfin: FishData = preload("res://fishingSystem/fishData/common/dustfin.tres")
 var pipe_darter: FishData = preload("res://fishingSystem/fishData/common/pipe_darter.tres")
 var eyefish: FishData = preload("res://fishingSystem/fishData/common/eyefish.tres")
+# rare
+const EEL = preload("uid://dq10bv06wnmx8")
+const HOODWINKER = preload("uid://bv4inqkcd5xmv")
+const PELICAN = preload("uid://cjody3ulnnwxg")
+const RHINOCHIMERA = preload("uid://bi0x4wx7in47b")
+const SEAHORSE = preload("uid://bofyywxsj45ej")
+# legendary
+const FANG = preload("uid://csir7h22jg48o")
+const GLOBB = preload("uid://dtxm6prtsie60")
+const SCISSOR = preload("uid://d2ghws76xt4vf")
+const STAR = preload("uid://rwsu00mccy8q")
+const SWORDFISH = preload("uid://beull7eh4qrkf")
+const TWINS = preload("uid://dephx8bnujd0w")
+
 
 # Pity counters
 var rare_pity_counter = 1
@@ -19,12 +33,19 @@ var loot_table = {
 		eyefish
 	],
 	"rare": [
-		greyscale
-		# TODO ADD MORE
+		EEL,
+		HOODWINKER,
+		PELICAN,
+		RHINOCHIMERA,
+		SEAHORSE
 	],
 	"legendary": [
-		dustfin
-		# TODO ADD MORE
+		FANG,
+		GLOBB,
+		SCISSOR,
+		STAR,
+		SWORDFISH,
+		TWINS
 	]
 }
 

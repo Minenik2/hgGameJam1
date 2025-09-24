@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm8opf2fqwyht"
-path="res://.godot/imported/eel.png-4800a5908c175544540c792f7f566ea5.ctex"
+uid="uid://blmlhy4cre1tt"
+path="res://.godot/imported/globb.png-76f5540433a844b2273dfc71ca51fbe8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/fish/eel.png"
-dest_files=["res://.godot/imported/eel.png-4800a5908c175544540c792f7f566ea5.ctex"]
+source_file="res://art/fish/globb.png"
+dest_files=["res://.godot/imported/globb.png-76f5540433a844b2273dfc71ca51fbe8.ctex"]
 
 [params]
 
