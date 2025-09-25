@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://k3tk4cwn4yi6" path="res://ui/upgradeShop/upgrade_shop.tscn" id="4_whs0q"]
 
 [node name="loot_scene" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_wcvx8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -22,6 +21,7 @@ size_flags_horizontal = 3
 theme_override_constants/margin_top = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+visible = false
 layout_mode = 2
 
 [node name="title" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
@@ -94,6 +94,28 @@ size_flags_vertical = 4
 focus_mode = 0
 theme_override_constants/outline_size = 6
 text = "Sell"
+
+[node name="questItems" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBoxContainer/MarginContainer2/questItems"]
+layout_mode = 2
+text = "Sitri"
+horizontal_alignment = 1
+
+[node name="tooltip" type="Label" parent="HBoxContainer/MarginContainer2/questItems"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Left click - Move Fish
+R - Rotate"
+horizontal_alignment = 1
+
+[node name="inventory" parent="HBoxContainer/MarginContainer2/questItems" instance=ExtResource("1_ugvoa")]
+layout_mode = 2
+size_flags_vertical = 3
+column_count = 3
+rows = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2

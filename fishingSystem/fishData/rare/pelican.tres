@@ -13,6 +13,6 @@ base_price = 200
 price_variance = 40
 rarity = 1
 texture = ExtResource("2_7tmri")
-description = "A grotesque, hollow-headed fish with a pouch that drags along the void. Its mouth is big enough to swallow other fish."
+description = "A grotesque, hollow-headed fish with a pouch that drags along the void. Its mouth is big enough to swallow fish 2x bigger than itself."
 item_id = 7
 metadata/_custom_type_script = "uid://coj83363ykpug"
