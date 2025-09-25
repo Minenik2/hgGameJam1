@@ -38,6 +38,9 @@ func isPlayingLand():
 func playMenuClick():
 	$menuClick.play()
 
+func playMenuHover():
+	$menuHover.play()
+
 func playDeath():
 	$death.play()
 

@@ -68,7 +68,7 @@ func _on_choice_selected(choice_index: int):
 func _unhandled_input(_event: InputEvent) -> void:
 	# Only advance if no choices are visible
 	if !is_dialogue_done:
-		if current_state == State.READING and (Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump")) and tween:
+		if current_state == State.READING and Input.is_action_just_pressed("dialogue") and tween:
 			textBox.visible_characters = -1
 			tween.stop()
 			$VBoxContainer/TextboxContainer/MarginContainer/HBoxContainer/EndSymbol.text = "v"

@@ -30,6 +30,14 @@ size_flags_vertical = 0
 text = "Reward"
 horizontal_alignment = 1
 
+[node name="tooltip" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Left click - Move Fish
+R - Rotate"
+horizontal_alignment = 1
+
 [node name="inventoryReward" parent="HBoxContainer/MarginContainer2/VBoxContainer" instance=ExtResource("1_ugvoa")]
 layout_mode = 2
 size_flags_horizontal = 3

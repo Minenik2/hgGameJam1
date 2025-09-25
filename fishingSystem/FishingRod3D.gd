@@ -48,10 +48,10 @@ var bobberSpawn = null
 # player inputs
 func _unhandled_input(event: InputEvent) -> void:
 	if !player.is_interacting:
-		if event.is_action_pressed("interact"):
+		if event.is_action_pressed("fishing"):
 			if not is_casting:
 				begin_charge()
-		elif event.is_action_released("interact"):
+		elif event.is_action_released("fishing"):
 			if is_charging:
 				end_charge_and_cast()
 			elif is_casting:
@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 		var direction = (target - bobber_pos)
 		var distance = direction.length()
 
-		if distance > 0.1:
+		if distance > 0.2:
 			direction = direction.normalized()
 			bobberSpawn.global_transform.origin += direction * REEL_SPEED * delta
 		else:

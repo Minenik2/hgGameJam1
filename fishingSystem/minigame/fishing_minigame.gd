@@ -57,7 +57,7 @@ func _process(delta):
 	moving_bar.position = pos
 
 func _unhandled_input(event):
-	if not in_progress or has_clicked or not event.is_action_pressed("interact"):
+	if not in_progress or has_clicked or not event.is_action_pressed("fishing"):
 		return
 
 	has_clicked = true  # Block further input

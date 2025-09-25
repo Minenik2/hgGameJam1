@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://hhr5fhyhxf52"]
+[gd_scene load_steps=9 format=3 uid="uid://hhr5fhyhxf52"]
 
 [ext_resource type="Script" uid="uid://cee0suigo65je" path="res://main_menu/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://dnxb8wjk5xc61" path="res://main_menu/title.gd" id="2_ekxnf"]
 [ext_resource type="Shader" uid="uid://diow28hope6d2" path="res://main_menu/main_menu.gdshader" id="2_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bxyynubgb8ttg" path="res://art/splash.jpg" id="3_3f7m4"]
 [ext_resource type="Shader" uid="uid://cnt65e5j3ljvm" path="res://main_menu/blurShader.gdshader" id="5_3f7m4"]
+[ext_resource type="Script" uid="uid://du2ghcrnrp0kj" path="res://ui/customBotton/pop_button.gd" id="5_6tl50"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8ln24"]
 shader = ExtResource("2_wu84c")
@@ -53,8 +54,10 @@ script = ExtResource("2_ekxnf")
 layout_mode = 2
 size_flags_horizontal = 4
 text = "< S T A R T >"
+script = ExtResource("5_6tl50")
 
 [node name="blur" type="TextureRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_rtw2f")
 anchors_preset = 15
 anchor_right = 1.0

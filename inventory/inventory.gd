@@ -39,11 +39,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			rotate_item()
 		
 		# Place item
-		elif event.is_action_pressed("interact") and mouse_inside:
+		elif event.is_action_pressed("fishing") and mouse_inside:
 			place_item()
 	else:
 		# Pick item
-		if event.is_action_pressed("interact") and mouse_inside:
+		if event.is_action_pressed("fishing") and mouse_inside:
 			pick_item()
 
 func create_slot():

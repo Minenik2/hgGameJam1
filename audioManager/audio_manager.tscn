@@ -33,6 +33,11 @@ stream = ExtResource("3_7agkn")
 volume_db = -20.0
 pitch_scale = 2.0
 
+[node name="menuHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7agkn")
+volume_db = -28.0
+pitch_scale = 3.0
+
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7agkn")
 volume_db = -5.0

@@ -1,1 +1,52 @@
-[{"commands_raw":"$if !talkedSitri {\n    Morgan\n    ---\n    You're awake\n    ---\n    Have you forgotten the time?\n    ---\n    Get your fishing rod ready and begin fishing\n    ---\n    signal(set,talkedSitri,true)\n}\n$else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n}\n\n?> Have you found the seal? -> useful\n?> I've caught some fish -> caught\n?> Could you remind me how to fish? -> remind\n?> Leave","gnode_name":"start","id":0,"name":"start","position":[60.0,340.0]},{"commands_raw":"You think you're the only one daydreaming on the job?\n---\nI haven't found anything either\n---","gnode_name":"useful","id":1,"name":"useful","position":[320.0,280.0]},{"commands_raw":"The rod in your hands! Cast it into the void below. \n---\nWhen you hear the splash, it's found the water. Wait.. ten to fifteen heartbeats. \n---\nThen you'll notice a red spark on the castline. \n---\nIt bites... Pull it - let it struggle, but it knows that it will eventually become prey.\n---","gnode_name":"remind","id":2,"name":"remind","position":[320.0,360.0]},{"commands_raw":"Good to hear. Whisper to Marbas behind me, he will trade us their remains. \n---\nKeep fishing. Until we've found the seal.\n---","gnode_name":"caught","id":3,"name":"caught","position":[320.0,180.0]}]
+[
+	{
+		"commands_raw": "$if !talkedSitri {\n    Morgan\n    ---\n    You're awake\n    ---\n    Have you forgotten the time?\n    ---\n    Get your fishing rod ready and begin fishing\n    ---\n    signal(set,talkedSitri,true)\n    ?> Have you found the seal? -> useful\n}\n$else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n}\n",
+		"gnode_name": "start",
+		"id": 0.0,
+		"name": "start",
+		"position": [
+			-80.0,
+			260.0
+		]
+	},
+	{
+		"commands_raw": "You think you're the only one daydreaming on the job?\n---\nI haven't found anything either\n---\n-> choices",
+		"gnode_name": "useful",
+		"id": 1.0,
+		"name": "useful",
+		"position": [
+			100.0,
+			220.0
+		]
+	},
+	{
+		"commands_raw": "The rod in your hands! Cast it into the void below. \n---\nWhen you hear the splash, it's found the water. Wait.. ten to fifteen heartbeats. \n---\nThen you'll notice a red spark on the castline. \n---\nIt bites... Pull it - let it struggle, but it knows that it will eventually become prey.\n---\n-> choices",
+		"gnode_name": "remind",
+		"id": 2.0,
+		"name": "remind",
+		"position": [
+			320.0,
+			360.0
+		]
+	},
+	{
+		"commands_raw": "Good to hear. Whisper to Marbas behind me, he will trade us their remains. \n---\nKeep fishing. Until we've found the seal.\n---\n-> choices",
+		"gnode_name": "caught",
+		"id": 3.0,
+		"name": "caught",
+		"position": [
+			320.0,
+			180.0
+		]
+	},
+	{
+		"commands_raw": "?> I've caught some fish -> caught\n?> Could you remind me how to fish? -> remind\n?> Leave",
+		"gnode_name": "choices",
+		"id": 4.0,
+		"name": "choices",
+		"position": [
+			80.0,
+			40.0
+		]
+	}
+]
