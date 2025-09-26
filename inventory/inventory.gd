@@ -3,6 +3,9 @@ extends Control
 @export var column_count: int = 6
 @export var rows: int = 3
 
+@export var keepKeyItems = true
+var hasKeyItems = [] # boolean array storing if there are key items in the inventory
+
 @onready var slot_scene = preload("res://inventory/slot.tscn")
 @onready var grid_container: GridContainer = $ColorRect/inventoryGrid/VBoxContainer/ScrollContainer/GridContainer
 @onready var item_scene = preload("res://inventory/item.tscn")
@@ -19,6 +22,8 @@ var can_place := false
 var icon_anchor : Vector2
 # deactivate while hidden
 var active = false
+# an item array having all the put items in it so it's easy accesable
+var itemArray = []
 
 func _ready() -> void:
 	grid_container.columns = column_count
@@ -109,6 +114,13 @@ func rotate_item():
 func place_item():
 	if not can_place or not current_slot:
 		return
+	# if the inventory does not allow key items
+	if item_held.fishData.item_type == FishData.TYPE.KEYITEM and !keepKeyItems:
+		AudioManager.playMenuClick()
+		return
+	elif item_held.fishData.item_type == FishData.TYPE.KEYITEM:
+		hasKeyItems.append(true) # the inventory has a key item inside
+
 	if item_held.fishData.rarity == FishData.RARITY.COMMON:
 		AudioManager.playDropCommon()
 	elif item_held.fishData.rarity == FishData.RARITY.RARE:
@@ -116,6 +128,8 @@ func place_item():
 	elif item_held.fishData.rarity == FishData.RARITY.LEGENDARY:
 		AudioManager.playDropLegendary()
 	emit_signal("item_placed", item_held)
+	
+	itemArray.append(item_held)
 		
 	var calculated_grid_id = current_slot.slot_ID + icon_anchor.x * col_count + icon_anchor.y
 	item_held._snap_to(grid_array[calculated_grid_id].global_position)
@@ -142,6 +156,9 @@ func pick_item():
 	item_held = current_slot.item_stored
 	item_held.selected = true
 	
+	if item_held.fishData.item_type == FishData.TYPE.KEYITEM:
+		hasKeyItems.pop_back()
+	
 	# only using fish data for playing sound
 	# could potentially be improved to also account for grid layout but skill issue
 	# me from the future i have no idea what i meant by grid layout above
@@ -151,6 +168,8 @@ func pick_item():
 		AudioManager.playPickUpRare()
 	elif item_held.fishData.rarity == FishData.RARITY.LEGENDARY:
 		AudioManager.playPickUpLegendary()
+	
+	itemArray.erase(item_held)
 	
 	item_held.z_index = 5
 	emit_signal("item_picked_up", item_held)

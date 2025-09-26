@@ -32,6 +32,16 @@ var increaseTime = 0.1
 var increaseChance = 3
 var increaseRarity = 1.2
 
+# quests
+var catchNeededForFragment1 = 12
+var catchNeededForFragment2 = 24
+var catchNeededForFragment3 = 36
+
+# quests for fish identification
+var lookingToSolveFragment1 = false
+var lookingToSolveFragment2 = false
+var lookingToSolveFragment3 = false
+
 func round_to_decimals(value: float, decimals: int) -> float:
 	var factor = pow(10, decimals)
 	return round(value * factor) / factor

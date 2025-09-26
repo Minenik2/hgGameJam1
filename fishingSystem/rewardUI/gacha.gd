@@ -19,10 +19,15 @@ const STAR = preload("uid://rwsu00mccy8q")
 const SWORDFISH = preload("uid://beull7eh4qrkf")
 const TWINS = preload("uid://dephx8bnujd0w")
 
+# seals
+const SEAL_FRAG_1 = preload("uid://dlcebciiqqxno")
+const SEAL_FRAG_2 = preload("uid://cshye4j7yh0ek")
+const SEAL_FRAG_3 = preload("uid://dmi85s80seyn3")
 
 # Pity counters
 var rare_pity_counter = 1
 var legendary_pity_counter = 1
+var total_pulls = 0
 
 #drops - item
 var loot_table = {
@@ -57,6 +62,18 @@ var pull_rates = {
 }
 
 func roll_loot():
+	if total_pulls == 12:
+		total_pulls += 1
+		DialogueDisplay.state["foundFragment1"] = true
+		return SEAL_FRAG_1
+	elif total_pulls >= 24 and !DialogueDisplay.state["foundFragment2"]:
+		total_pulls += 1
+		DialogueDisplay.state["foundFragment2"] = true
+		return SEAL_FRAG_2
+	elif total_pulls >= 36 and !DialogueDisplay.state["foundFragment3"]:
+		DialogueDisplay.state["foundFragment3"] = true
+		return SEAL_FRAG_3
+	
 	var roll = randf_range(0, 100)
 	var rarity = ""
 	
@@ -77,5 +94,7 @@ func roll_loot():
 	# Shuffle and pick a drop from the chosen pool
 	loot_table[rarity].shuffle()
 	var drop = loot_table[rarity][0]
+	
+	total_pulls += 1
 	
 	return drop

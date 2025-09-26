@@ -1,12 +1,12 @@
 [
 	{
-		"commands_raw": "$if !talkedSitri {\n    Morgan\n    ---\n    You're awake\n    ---\n    Have you forgotten the time?\n    ---\n    Get your fishing rod ready and begin fishing\n    ---\n    signal(set,talkedSitri,true)\n    ?> Have you found the seal? -> useful\n}\n$else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n}\n",
+		"commands_raw": "$if !talkedSitri {\n    Morgan\n    ---\n    You're awake\n    ---\n    Have you forgotten the time?\n    ---\n    Get your fishing rod ready and begin fishing\n    ---\n    signal(set,talkedSitri,true)\n    ?> Have you found the seal? -> useful\n}\n$else {\n    $if givenFragment1 {\n        -> giveFragment1\n    }\n    $else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n    }\n}\n",
 		"gnode_name": "start",
 		"id": 0.0,
 		"name": "start",
 		"position": [
-			-80.0,
-			260.0
+			-360.0,
+			-20.0
 		]
 	},
 	{
@@ -40,13 +40,153 @@
 		]
 	},
 	{
-		"commands_raw": "?> I've caught some fish -> caught\n?> Could you remind me how to fish? -> remind\n?> Leave",
+		"commands_raw": "$if foundFragment1 {\n    ?> I've found something -> fragment1\n}\n\n?> I've caught some fish -> caught\n?> Could you remind me how to fish? -> remind\n?> Leave",
 		"gnode_name": "choices",
 		"id": 4.0,
 		"name": "choices",
 		"position": [
 			80.0,
 			40.0
+		]
+	},
+	{
+		"commands_raw": "Really?\n---\nLet me see it\n---\nsignal(globalSignal,sitriUI)",
+		"gnode_name": "fragment1",
+		"id": 5.0,
+		"name": "fragment1",
+		"position": [
+			280.0,
+			-60.0
+		]
+	},
+	{
+		"commands_raw": "$if givenFragment2 {\n        -> giveFragment2\n    }\n\n$if !replyFragment1 {\nThis is it!\n---\nIt must be a seal fagment\n---\nMy mothers spoke of it. But... we need more\n---\nsignal(set,replyFragment1,true)\n\n?> We will finish it -> giveFragment1positive\n?> Are you sure it's safe? -> giveFragment1neutral\n?> It looks dangerous. Maybe we should leave it -> giveFragment1negative\n}\n$else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n    }",
+		"gnode_name": "givefragment1",
+		"id": 6.0,
+		"name": "giveFragment1",
+		"position": [
+			-180.0,
+			-280.0
+		]
+	},
+	{
+		"commands_raw": "signal(increase,refusalRep,1)",
+		"gnode_name": "givefragment1negative",
+		"id": 7.0,
+		"name": "giveFragment1negative",
+		"position": [
+			80.0,
+			-200.0
+		]
+	},
+	{
+		"commands_raw": "",
+		"gnode_name": "givefragment1neutral",
+		"id": 8.0,
+		"name": "giveFragment1neutral",
+		"position": [
+			80.0,
+			-280.0
+		]
+	},
+	{
+		"commands_raw": "signal(increase,inheritanceRep,1)",
+		"gnode_name": "givefragment1positive",
+		"id": 9.0,
+		"name": "giveFragment1positive",
+		"position": [
+			80.0,
+			-380.0
+		]
+	},
+	{
+		"commands_raw": "$if givenFragment3 {\n        -> giveFragment3\n    }\n\n$if !replyFragment2 {\nAnother fragment...\n---\nThe seal is starting to take shape\n---\nMy blood calls to it\n---\nsignal(set,replyFragment2,true)\n\n?> Then nothing should stop us -> giveFragment2positive\n?> We'll see. One more piece will tell us everything -> giveFragment2neutral\n?> I still don't trust it. What if it brings madness? -> giveFragment2negative\n}\n$else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n}",
+		"gnode_name": "givefragment2",
+		"id": 10.0,
+		"name": "giveFragment2",
+		"position": [
+			-200.0,
+			-540.0
+		]
+	},
+	{
+		"commands_raw": "\nsignal(>,refusalRep,1)\n$if refusalRepbool {\n    -> refusal ending\n}\n\nsignal(>,inheritanceRep,1)\n$if inheritanceRepbool {\n    -> inheritance ending\n}\n\n-> neutral\n",
+		"gnode_name": "givefragment3",
+		"id": 11.0,
+		"name": "giveFragment3",
+		"position": [
+			-200.0,
+			-760.0
+		]
+	},
+	{
+		"commands_raw": "signal(increase,refusalRep,1)",
+		"gnode_name": "givefragment2negative",
+		"id": 12.0,
+		"name": "giveFragment2negative",
+		"position": [
+			80.0,
+			-460.0
+		]
+	},
+	{
+		"commands_raw": "",
+		"gnode_name": "givefragment2neutral",
+		"id": 13.0,
+		"name": "giveFragment2neutral",
+		"position": [
+			80.0,
+			-540.0
+		]
+	},
+	{
+		"commands_raw": "signal(increase,inheritanceRep,1)",
+		"gnode_name": "givefragment2positive",
+		"id": 14.0,
+		"name": "giveFragment2positive",
+		"position": [
+			80.0,
+			-620.0
+		]
+	},
+	{
+		"commands_raw": "Three pieces\n---\nAt last, the seal of my people\n---\nWhole again\n---\n?> Take it. Reclaim what was lost -> inheritance ending\n?> Break it. It's a curse -> refusal ending\n?> I don't know. You must choose, Sitri -> randomEnding",
+		"gnode_name": "neutral",
+		"id": 15.0,
+		"name": "neutral",
+		"position": [
+			60.0,
+			-940.0
+		]
+	},
+	{
+		"commands_raw": "Maybe you're right\n---\nWhat if this is no heritage at all?\n---\nWhat if it binds something that should never awake?\n---\nMorgan...\n---\nI cannot risk it. We survive, or we vanish\n---\nNothing more\n---\n[Sitri drops the fragments onto the floor]\n---\n[She smashes them... Pieces scatter, a hollow sound echoes through the structure]\n---\n[The void water ripples violently, then grows still]\n---\n...\n---\n[THE END]\n---\nTHANK YOU FOR PLAYING <3\n---\nYOU'VE COMPLETED THE MAIN STORY\n---\nHOWEVER YOU CAN STILL FISH TO RELAX, BUY UPRADES OR FREE ROAM\n---",
+		"gnode_name": "refusal ending",
+		"id": 16.0,
+		"name": "refusal ending",
+		"position": [
+			100.0,
+			-700.0
+		]
+	},
+	{
+		"commands_raw": "[Sitri assembles the seal. The fragments fuse togheter glowing faintly.]\n---\nI hear them\n---\nI feel them\n---\nThe sami blood\n---\nThe memory of my own mothers, flowing back into the world\n---\n[The seal lights up brighter]\n---\n[It starts to disintegrate]\n---\nsignal(globalSignal,END)\n[With it, Sitri is also consumed]\n---\nBelonging, at last...\n---\n...\n---\n[THE END]\n---\nTHANK YOU FOR PLAYING <3\n---\nYOU'VE COMPLETED THE MAIN STORY\n---\nHOWEVER YOU CAN STILL FISH TO RELAX, BUY UPRADES OR FREE ROAM\n---",
+		"gnode_name": "inheritance ending",
+		"id": 18.0,
+		"name": "inheritance ending",
+		"position": [
+			100.0,
+			-820.0
+		]
+	},
+	{
+		"commands_raw": "signal(flipCoin)\n$if flipCoin == \"heads\" {\n-> inheritance ending\n}\n$else {\n-> refusal ending\n}",
+		"gnode_name": "randomending",
+		"id": 19.0,
+		"name": "randomEnding",
+		"position": [
+			280.0,
+			-940.0
 		]
 	}
 ]

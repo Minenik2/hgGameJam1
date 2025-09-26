@@ -19,5 +19,11 @@ func _process(_delta):
 	shader_mat.set_shader_parameter("time", Time.get_ticks_msec() / 1000.0)
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://models/nested/3d_enviroment.tscn")
 	AudioManager.playMenuClick()
+	var tween = create_tween()
+	var timetween = 1.5
+	tween.tween_property(blur_mat, "shader_parameter/blur_amount", 6, timetween).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
+	await get_tree().create_timer(timetween).timeout
+	get_tree().change_scene_to_file("res://models/nested/3d_enviroment.tscn")
+	

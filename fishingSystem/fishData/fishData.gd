@@ -7,6 +7,11 @@ enum RARITY {
 	LEGENDARY
 }
 
+enum TYPE {
+	FISH,
+	KEYITEM
+}
+
 @export var name: String
 @export var base_dimension: float
 @export var dimension_variance: float = 0.5
@@ -20,9 +25,10 @@ enum RARITY {
 @export var rarity: RARITY = RARITY.COMMON
 @export var texture: Texture2D
 @export var description: String
+@export var item_type: TYPE = TYPE.FISH
 
 @export_category("Inventory Shape")
-@export var grid: String
+@export var grid: String # not functional, using JSON parsing instead
 @export var item_id: int
 
 var fishDataDict: Dictionary

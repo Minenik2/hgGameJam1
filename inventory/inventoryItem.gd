@@ -15,10 +15,7 @@ func _process(delta: float) -> void:
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
 
 func load_item(a_ItemID : int) -> void:
-	var icon_path = "res://art/fish/" + DataHandler.item_data[str(a_ItemID)]["Name"] + ".png"
-	print(icon_path)
-	# Load texture
-	var tex: Texture2D = load(icon_path)
+	var tex: Texture2D = fishData.texture
 	iconRect_path.texture = tex
 	
 	# change color based on rarity

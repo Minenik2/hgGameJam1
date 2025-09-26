@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsjw4dnrto7p7"]
+[gd_scene load_steps=6 format=3 uid="uid://bsjw4dnrto7p7"]
 
 [ext_resource type="PackedScene" uid="uid://b4f7svei6orof" path="res://inventory/inventory.tscn" id="1_ugvoa"]
 [ext_resource type="Script" uid="uid://b7a02n0n7pv02" path="res://inventory/combined_inventories/loot_scene_manager.gd" id="1_wcvx8"]
 [ext_resource type="Script" uid="uid://cd4kgi8nx7f7c" path="res://inventory/combined_inventories/shop_component.gd" id="3_vhf8b"]
 [ext_resource type="PackedScene" uid="uid://k3tk4cwn4yi6" path="res://ui/upgradeShop/upgrade_shop.tscn" id="4_whs0q"]
+[ext_resource type="Script" uid="uid://dncn8fmfu6hit" path="res://inventory/combined_inventories/questSplash.gd" id="4_yafua"]
 
 [node name="loot_scene" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_wcvx8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -80,6 +82,7 @@ layout_mode = 2
 size_flags_vertical = 3
 column_count = 4
 rows = 7
+keepKeyItems = false
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2/shop"]
 layout_mode = 2
@@ -96,7 +99,9 @@ theme_override_constants/outline_size = 6
 text = "Sell"
 
 [node name="questItems" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("4_yafua")
 
 [node name="Name" type="Label" parent="HBoxContainer/MarginContainer2/questItems"]
 layout_mode = 2
@@ -104,18 +109,33 @@ text = "Sitri"
 horizontal_alignment = 1
 
 [node name="tooltip" type="Label" parent="HBoxContainer/MarginContainer2/questItems"]
+custom_minimum_size = Vector2(25, 40)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 16
-text = "Left click - Move Fish
-R - Rotate"
+text = "Give sitri the item"
 horizontal_alignment = 1
+autowrap_mode = 3
 
-[node name="inventory" parent="HBoxContainer/MarginContainer2/questItems" instance=ExtResource("1_ugvoa")]
+[node name="inventoryQuest" parent="HBoxContainer/MarginContainer2/questItems" instance=ExtResource("1_ugvoa")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 column_count = 3
-rows = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2/questItems"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = -80
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 50
+
+[node name="giveItem" type="Button" parent="HBoxContainer/MarginContainer2/questItems/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_constants/outline_size = 6
+text = "Give Item"
 
 [node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -130,6 +150,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_constants/outline_size = 6
 text = "Done"
+
+[node name="tooltip_middle" type="Label" parent="HBoxContainer/MarginContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -162,9 +190,16 @@ visible = false
 [connection signal="item_placed" from="HBoxContainer/MarginContainer2/shop/inventoryShop" to="HBoxContainer/MarginContainer2/shop" method="_on_inventory_shop_item_placed"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer2/shop/inventoryShop" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_placed"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/shop/MarginContainer/sell" to="HBoxContainer/MarginContainer2/shop" method="_on_sell_pressed"]
+[connection signal="item_picked_up" from="HBoxContainer/MarginContainer2/questItems/inventoryQuest" to="HBoxContainer/MarginContainer2/questItems" method="_on_quest_item_picked_up"]
+[connection signal="item_picked_up" from="HBoxContainer/MarginContainer2/questItems/inventoryQuest" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_picked_up"]
+[connection signal="item_placed" from="HBoxContainer/MarginContainer2/questItems/inventoryQuest" to="HBoxContainer/MarginContainer2/questItems" method="_on_quest_item_placed"]
+[connection signal="item_placed" from="HBoxContainer/MarginContainer2/questItems/inventoryQuest" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_placed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/questItems/MarginContainer/giveItem" to="HBoxContainer/MarginContainer2/questItems" method="_on_give_item_pressed"]
 [connection signal="button_down" from="HBoxContainer/MarginContainer3/done" to="." method="_on_done_button_down"]
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" method="_on_item_picked_up"]
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/shop/inventoryShop" method="_on_item_picked_up"]
+[connection signal="item_picked_up" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/questItems/inventoryQuest" method="_on_item_picked_up"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" method="_on_item_placed"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/shop/inventoryShop" method="_on_item_placed"]
+[connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/questItems/inventoryQuest" method="_on_item_placed"]
 [connection signal="donePressed" from="upgradeShop" to="." method="_on_upgrade_shop_done_pressed"]

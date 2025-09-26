@@ -25,11 +25,19 @@ func startLoot(currentFish: FishData) -> void:
 	await get_tree().process_frame
 	inventoryReward.spawn_item_to_inventory(currentFish)
 	# % chance to spawn an extra one
-	if randi() % 100 < Database.doubleChance:  # generates a number 0-99
+	if randi() % 100 < Database.doubleChance and currentFish.item_type == FishData.TYPE.FISH:  # generates a number 0-99
 		inventoryReward.spawn_item_to_inventory(currentFish)
 
 func closeUi():
 	AudioManager.playMenuClick()
+	if !inventoryReward.hasKeyItems.is_empty():
+		%tooltip_middle.text = "Please pickup a key item"
+		return
+	if inventoryPlayer.item_held:
+		%tooltip_middle.text = "Please put down the held item"
+		return
+	%tooltip_middle.text = ""
+	
 	hide_all()
 	hide()
 	MouseManager.hide_mouse()
@@ -55,11 +63,13 @@ func hide_all():
 	$HBoxContainer/MarginContainer2/VBoxContainer.hide() # reward ui
 	$HBoxContainer/MarginContainer2/playerStats.hide()
 	$HBoxContainer/MarginContainer2/shop.hide()
+	%questItems.hide()
 	$upgradeShop.hide()
 	
 	inventoryReward.active = false
 	inventoryPlayer.active = false
 	inventoryShop.active = false
+	%inventoryQuest.active = false
 
 func startShop():
 	hide_all()
@@ -70,11 +80,22 @@ func startShop():
 	inventoryShop.active = true
 	inventoryPlayer.active = true
 
+func startQuest():
+	hide_all()
+	%questItems.show()
+	show()
+	MouseManager.show_mouse()
+	%inventoryQuest.active = true
+	inventoryPlayer.active = true
+	
+
 func on_dialogue_signal(command):
 	if command == "shopUI":
 		startShop()
 	elif command == "upgradeUI":
 		startUpgrades()
+	elif command == "sitriUI":
+		startQuest()
 
 func startUpgrades():
 	hide_all()

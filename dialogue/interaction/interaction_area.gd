@@ -18,12 +18,19 @@ var canInteract = false
 # to fix multiple interaction areas in one enviroment
 var dialogueStarted = false
 
+var toBeDestroyed = false 
+
 
 func _ready():
+	if NodeDestroyer.is_destroyed(self):
+		queue_free() # already destroyed before
+		return
+	# normal setup
 	# Fallback to default if player not manually assigned in inspector
 	if player == null:
 		player = get_node("../player")
 	DialogueDisplay.connect("dialogue_ended", self.dialogue_ended)
+	DialogueDisplay.connect("global_signal", self.dialogue_signal_recieved)
 
 func on_interact():
 	if teleporter and DialogueDisplay.state[check]:
@@ -56,12 +63,17 @@ func dialogue_started():
 func dialogue_ended():
 	if dialogueStarted:
 		DialogueDisplay.hide()
-		Tooltip.show()
+		if !toBeDestroyed:
+			Tooltip.show()
 		MouseManager.hide_mouse()
+			
 		# small hump so that the player doesnt jump when ending dialogue with space
 		await get_tree().create_timer(0.2).timeout
 		player.is_interacting = false
 		dialogueStarted = false
+		
+		if toBeDestroyed:
+			destroy_object()
 
 func _on_body_entered(_body: Node3D) -> void:
 	Tooltip.show()
@@ -70,3 +82,12 @@ func _on_body_entered(_body: Node3D) -> void:
 func _on_body_exited(_body: Node3D) -> void:
 	Tooltip.hide()
 	canInteract = false
+
+func dialogue_signal_recieved(command):
+	if command == "END" and canInteract:
+		hide()
+		toBeDestroyed = true
+
+func destroy_object():
+	NodeDestroyer.mark_destroyed(self)
+	queue_free()

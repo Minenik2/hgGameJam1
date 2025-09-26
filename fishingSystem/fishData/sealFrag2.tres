@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=3 format=3 uid="uid://cshye4j7yh0ek"]
+
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="1_74gt5"]
+[ext_resource type="Texture2D" uid="uid://dwytk3etj1wa0" path="res://art/sealFrag2.png" id="2_74gt5"]
+
+[resource]
+script = ExtResource("1_74gt5")
+name = "???"
+base_dimension = 10.0
+dimension_variance = 0.0
+base_weight = 0.1
+weight_variance = 0.0
+price_variance = 0
+texture = ExtResource("2_74gt5")
+item_type = 1
+item_id = 4
+metadata/_custom_type_script = "uid://coj83363ykpug"
