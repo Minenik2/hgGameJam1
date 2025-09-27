@@ -12,6 +12,7 @@ base_weight = 0.1
 weight_variance = 0.0
 price_variance = 0
 texture = ExtResource("2_2olnb")
+description = "A pale jagged piece, etched with faint encrypted rune. It hums faintly when held, as if remembering voices long silenced."
 item_type = 1
 item_id = 4
 metadata/_custom_type_script = "uid://coj83363ykpug"

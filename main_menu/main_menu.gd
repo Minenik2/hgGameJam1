@@ -24,6 +24,12 @@ func _on_button_pressed() -> void:
 	var timetween = 1.5
 	tween.tween_property(blur_mat, "shader_parameter/blur_amount", 6, timetween).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
-	await get_tree().create_timer(timetween).timeout
-	get_tree().change_scene_to_file("res://models/nested/3d_enviroment.tscn")
+	var path = "res://models/nested/3d_enviroment.tscn"
+	ResourceLoader.load_threaded_request(path)
+
+	while ResourceLoader.load_threaded_get_status(path) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+		await get_tree().process_frame
+
+	var scene = ResourceLoader.load_threaded_get(path)
+	get_tree().change_scene_to_packed(scene)
 	

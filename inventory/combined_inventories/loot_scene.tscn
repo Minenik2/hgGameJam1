@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsjw4dnrto7p7"]
+[gd_scene load_steps=7 format=3 uid="uid://bsjw4dnrto7p7"]
 
 [ext_resource type="PackedScene" uid="uid://b4f7svei6orof" path="res://inventory/inventory.tscn" id="1_ugvoa"]
 [ext_resource type="Script" uid="uid://b7a02n0n7pv02" path="res://inventory/combined_inventories/loot_scene_manager.gd" id="1_wcvx8"]
+[ext_resource type="Script" uid="uid://cvvc1q2klkmqh" path="res://inventory/combined_inventories/player_stats.gd" id="3_nfyma"]
 [ext_resource type="Script" uid="uid://cd4kgi8nx7f7c" path="res://inventory/combined_inventories/shop_component.gd" id="3_vhf8b"]
 [ext_resource type="PackedScene" uid="uid://k3tk4cwn4yi6" path="res://ui/upgradeShop/upgrade_shop.tscn" id="4_whs0q"]
 [ext_resource type="Script" uid="uid://dncn8fmfu6hit" path="res://inventory/combined_inventories/questSplash.gd" id="4_yafua"]
@@ -48,12 +49,46 @@ column_count = 4
 rows = 6
 
 [node name="playerStats" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
-visible = false
 layout_mode = 2
+script = ExtResource("3_nfyma")
 
 [node name="statMoney" type="Label" parent="HBoxContainer/MarginContainer2/playerStats"]
 layout_mode = 2
 text = "IKO: 0"
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/MarginContainer2/playerStats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2/playerStats/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/playerStats/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="questChainTitle" type="Label" parent="HBoxContainer/MarginContainer2/playerStats/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Name of the quest"
+
+[node name="questTitle" type="Label" parent="HBoxContainer/MarginContainer2/playerStats/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Log 01:"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/MarginContainer2/playerStats/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Sitri seeks the seal, if it is to be found, it will likely surface by the rod"
 
 [node name="shop" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
 visible = false
@@ -100,6 +135,7 @@ text = "Sell"
 
 [node name="questItems" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 script = ExtResource("4_yafua")
 

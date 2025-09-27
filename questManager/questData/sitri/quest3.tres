@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=3 format=3 uid="uid://l47lr4v6y6nf"]
+
+[ext_resource type="Script" uid="uid://dd5ujfnypq370" path="res://questManager/questData/questData.gd" id="1_hoedd"]
+[ext_resource type="Resource" uid="uid://dm1fr37fml7k3" path="res://questManager/questData/sitri/quest4.tres" id="1_mvvnq"]
+
+[resource]
+script = ExtResource("1_hoedd")
+quest_name = "Repeating Echoes"
+quest_chain = "The Seal"
+next_quest = ExtResource("1_mvvnq")
+description = "The time has come to find the second fragment, it will likely surface by the rod."
+required_item_name = "???"
+dialogue_state_true = Array[String](["givenFragment2"])
+metadata/_custom_type_script = "uid://dd5ujfnypq370"

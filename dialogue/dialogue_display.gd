@@ -7,6 +7,9 @@ const DEFAULT_STATE := {
 	solvedFragment1 = false,
 	solvedFragment2 = false,
 	solvedFragment3 = false,
+	foundFragment2 = false,
+	foundFragment3 = false,
+	showRitualChoice = false,
 }
 
 @onready var state = DEFAULT_STATE.duplicate()

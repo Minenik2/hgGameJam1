@@ -36,6 +36,7 @@ MouseManager="*res://player/mouseManager.gd"
 Database="*res://database/Database.gd"
 Gacha="*res://fishingSystem/rewardUI/gacha.gd"
 NodeDestroyer="*res://nodeDestroyer/NodeDestroyer.gd"
+QuestManager="*res://questManager/questManager.gd"
 
 [display]
 
@@ -47,6 +48,12 @@ mouse_cursor/custom_image="uid://bknjboj7supb2"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ez_dialogue/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://ui/": "green"
+}
 
 [filesystem]
 

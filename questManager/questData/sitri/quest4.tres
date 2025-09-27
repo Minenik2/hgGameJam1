@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=3 format=3 uid="uid://dm1fr37fml7k3"]
+
+[ext_resource type="Resource" uid="uid://mixmniet45pc" path="res://questManager/questData/sitri/quest5.tres" id="1_65iti"]
+[ext_resource type="Script" uid="uid://dd5ujfnypq370" path="res://questManager/questData/questData.gd" id="1_m01yr"]
+
+[resource]
+script = ExtResource("1_m01yr")
+quest_name = "Feed the mind"
+quest_chain = "The Seal"
+next_quest = ExtResource("1_65iti")
+description = "The next seal fragment needs a fish deciphered as Muotha. A fish with big mouth capable of eating prey bigger it's own size."
+required_item_name = "Gulmouth"
+dialogue_state_true = Array[String](["solvedFragment2"])
+metadata/_custom_type_script = "uid://dd5ujfnypq370"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=3 format=3 uid="uid://7ht8jc8rlrdf"]
+
+[ext_resource type="Resource" uid="uid://7hyc5edkqcvt" path="res://questManager/questData/sitri/quest2.tres" id="1_l1bha"]
+[ext_resource type="Script" uid="uid://dd5ujfnypq370" path="res://questManager/questData/questData.gd" id="1_yy26j"]
+
+[resource]
+script = ExtResource("1_yy26j")
+quest_name = "Waters Deep"
+quest_chain = "The Seal"
+next_quest = ExtResource("1_l1bha")
+description = "Sitri seeks the seal, if it is to be found, it will likely surface by the rod."
+required_item_name = "???"
+dialogue_state_true = Array[String](["givenFragment1"])
+metadata/_custom_type_script = "uid://dd5ujfnypq370"

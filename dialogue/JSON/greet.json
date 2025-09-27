@@ -1,6 +1,6 @@
 [
 	{
-		"commands_raw": "$if !talkedSitri {\n    Morgan\n    ---\n    You're awake\n    ---\n    Have you forgotten the time?\n    ---\n    Get your fishing rod ready and begin fishing\n    ---\n    signal(set,talkedSitri,true)\n    ?> Have you found the seal? -> useful\n}\n$else {\n    $if givenFragment1 {\n        -> giveFragment1\n    }\n    $else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n    }\n}\n",
+		"commands_raw": "$if !talkedSitri {\n    Morgan\n    ---\n    You're awake\n    ---\n    Have you forgotten the time?\n    ---\n    Get your fishing rod ready and begin fishing\n    ---\n    signal(set,talkedSitri,true)\n    ?> Have you found the seal? -> useful\n}\n$else {\n    $if givenFragment1 {\n        -> puzzleChecker\n    }\n    $else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n    }\n}\n",
 		"gnode_name": "start",
 		"id": 0.0,
 		"name": "start",
@@ -40,7 +40,7 @@
 		]
 	},
 	{
-		"commands_raw": "$if foundFragment1 {\n    ?> I've found something -> fragment1\n}\n\n?> I've caught some fish -> caught\n?> Could you remind me how to fish? -> remind\n?> Leave",
+		"commands_raw": "$if showRitualChoice {\n    ?> I've found the correct fish for the ritual -> ritual\n}\n$else {\n$if foundFragment1 {\n    ?> I've found something -> fragment1\n    }\n}\n$if replyFragment1 {\n?> What do you make of Marbas? -> marbas\n?> Do you ever sleep, Sitri? -> sleep\n}\n$else {\n?> I've caught some fish -> caught\n?> Could you remind me how to fish? -> remind\n}\n?> Leave",
 		"gnode_name": "choices",
 		"id": 4.0,
 		"name": "choices",
@@ -56,11 +56,11 @@
 		"name": "fragment1",
 		"position": [
 			280.0,
-			-60.0
+			0.0
 		]
 	},
 	{
-		"commands_raw": "$if givenFragment2 {\n        -> giveFragment2\n    }\n\n$if !replyFragment1 {\nThis is it!\n---\nIt must be a seal fagment\n---\nMy mothers spoke of it. But... we need more\n---\nsignal(set,replyFragment1,true)\n\n?> We will finish it -> giveFragment1positive\n?> Are you sure it's safe? -> giveFragment1neutral\n?> It looks dangerous. Maybe we should leave it -> giveFragment1negative\n}\n$else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n    }",
+		"commands_raw": "$if !replyFragment1 {\nThis is it!\n---\nIt must be a seal fagment\n---\nMy mothers spoke of it. But... we need more\n---\nsignal(set,replyFragment1,true)\n\n?> We will finish it -> giveFragment1positive\n?> Are you sure it's safe? -> giveFragment1neutral\n?> It looks dangerous. Maybe we should leave it -> giveFragment1negative\n}\n$else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n    }",
 		"gnode_name": "givefragment1",
 		"id": 6.0,
 		"name": "giveFragment1",
@@ -70,7 +70,7 @@
 		]
 	},
 	{
-		"commands_raw": "signal(increase,refusalRep,1)",
+		"commands_raw": "signal(increase,refusalRep,1)\nYou would turn away? If we leave the fragment here it wil sink into silence, and so will we\n---\n-> puzzle1\n",
 		"gnode_name": "givefragment1negative",
 		"id": 7.0,
 		"name": "giveFragment1negative",
@@ -80,7 +80,7 @@
 		]
 	},
 	{
-		"commands_raw": "",
+		"commands_raw": "Nothing worth remembering ever is safe.\n---\n-> puzzle1",
 		"gnode_name": "givefragment1neutral",
 		"id": 8.0,
 		"name": "giveFragment1neutral",
@@ -90,7 +90,7 @@
 		]
 	},
 	{
-		"commands_raw": "signal(increase,inheritanceRep,1)",
+		"commands_raw": "signal(increase,inheritanceRep,1)\nWonderful, you must feel it's presence. Pulling us forward.\n---\n-> puzzle1",
 		"gnode_name": "givefragment1positive",
 		"id": 9.0,
 		"name": "giveFragment1positive",
@@ -100,7 +100,7 @@
 		]
 	},
 	{
-		"commands_raw": "$if givenFragment3 {\n        -> giveFragment3\n    }\n\n$if !replyFragment2 {\nAnother fragment...\n---\nThe seal is starting to take shape\n---\nMy blood calls to it\n---\nsignal(set,replyFragment2,true)\n\n?> Then nothing should stop us -> giveFragment2positive\n?> We'll see. One more piece will tell us everything -> giveFragment2neutral\n?> I still don't trust it. What if it brings madness? -> giveFragment2negative\n}\n$else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n}",
+		"commands_raw": "$if !replyFragment2 {\nAnother fragment...\n---\nThe seal is starting to take shape\n---\nMy blood calls to it\n---\nsignal(set,replyFragment2,true)\n\n?> Then nothing should stop us -> giveFragment2positive\n?> We'll see. One more piece will tell us everything -> giveFragment2neutral\n?> I still don't trust it. What if it brings madness? -> giveFragment2negative\n}\n$else {\n    Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n}",
 		"gnode_name": "givefragment2",
 		"id": 10.0,
 		"name": "giveFragment2",
@@ -110,17 +110,17 @@
 		]
 	},
 	{
-		"commands_raw": "\nsignal(>,refusalRep,1)\n$if refusalRepbool {\n    -> refusal ending\n}\n\nsignal(>,inheritanceRep,1)\n$if inheritanceRepbool {\n    -> inheritance ending\n}\n\n-> neutral\n",
-		"gnode_name": "givefragment3",
+		"commands_raw": "signal(>,refusalRep,1)\n$if refusalRepbool {\n    -> refusal ending\n}\n\nsignal(>,inheritanceRep,1)\n$if inheritanceRepbool {\n    -> inheritance ending\n}\n\n-> neutral\n",
+		"gnode_name": "solvefragment3",
 		"id": 11.0,
-		"name": "giveFragment3",
+		"name": "solveFragment3",
 		"position": [
 			-200.0,
 			-760.0
 		]
 	},
 	{
-		"commands_raw": "signal(increase,refusalRep,1)",
+		"commands_raw": "signal(increase,refusalRep,1)\nMadness may already dwell here, Morgan\n---\nThe seal is ours to find\n---\nI cannot abandon it now\n---\n-> puzzle2",
 		"gnode_name": "givefragment2negative",
 		"id": 12.0,
 		"name": "giveFragment2negative",
@@ -130,7 +130,7 @@
 		]
 	},
 	{
-		"commands_raw": "",
+		"commands_raw": "You're right\n---\nThe seal will reveal itself only when whole\n---\nUntil then we endure...\n---\n-> puzzle2",
 		"gnode_name": "givefragment2neutral",
 		"id": 13.0,
 		"name": "giveFragment2neutral",
@@ -140,7 +140,7 @@
 		]
 	},
 	{
-		"commands_raw": "signal(increase,inheritanceRep,1)",
+		"commands_raw": "signal(increase,inheritanceRep,1)\nYes...\n---\nEvery piece brings me closer to them\n---\nTo what my mothers guarded\n---\nWith you beside me, even the silence of this place cannot turn us back\n---\n-> puzzle2",
 		"gnode_name": "givefragment2positive",
 		"id": 14.0,
 		"name": "giveFragment2positive",
@@ -165,7 +165,7 @@
 		"id": 16.0,
 		"name": "refusal ending",
 		"position": [
-			100.0,
+			240.0,
 			-700.0
 		]
 	},
@@ -175,7 +175,7 @@
 		"id": 18.0,
 		"name": "inheritance ending",
 		"position": [
-			100.0,
+			240.0,
 			-820.0
 		]
 	},
@@ -187,6 +187,96 @@
 		"position": [
 			280.0,
 			-940.0
+		]
+	},
+	{
+		"commands_raw": "...\n---\nWait\n---\nThis fragment, it symbolizes a specific fish species\n---\nWe must need it for the ritual\n---\nIt references Avvi\n---\nA fish that has many eyes and is susceptible to light\n---\nBring that fish to me before we can advance\n---",
+		"gnode_name": "puzzle1",
+		"id": 20.0,
+		"name": "puzzle1",
+		"position": [
+			360.0,
+			-300.0
+		]
+	},
+	{
+		"commands_raw": "...\n---\nThis fragment references muotha\n---\nA fish with a big mouth capable of eating prey bigger it's own size\n---\nBring that fish to me before we can advance\n---",
+		"gnode_name": "puzzle2",
+		"id": 21.0,
+		"name": "puzzle2",
+		"position": [
+			380.0,
+			-560.0
+		]
+	},
+	{
+		"commands_raw": "signal(globalSignal,sitriUI)",
+		"gnode_name": "ritual",
+		"id": 22.0,
+		"name": "ritual",
+		"position": [
+			280.0,
+			-60.0
+		]
+	},
+	{
+		"commands_raw": "$if solvedFragment3 {\n    -> solveFragment3\n}\n\n$if givenFragment3 {\n    -> giveFragment3\n}\n\n$if solvedFragment2 {\n    -> solveFragment2\n}\n\n$if givenFragment2 {\n    -> giveFragment2\n}\n\n$if solvedFragment1 {\n    -> solveFragment1\n}\n\n$if givenFragment1 {\n    -> giveFragment1\n}\n\n",
+		"gnode_name": "puzzlechecker",
+		"id": 23.0,
+		"name": "puzzleChecker",
+		"position": [
+			-680.0,
+			-300.0
+		]
+	},
+	{
+		"commands_raw": "$if !replySolvedFragment1 {\n    It's the right species!\n    ---\n    We can continue the ritual\n    ---\n    Find the next fragment\n    ---\n    signal(set,replySolvedFragment1,true)\n    }\n    $else {\n        Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n    }",
+		"gnode_name": "solvefragment1",
+		"id": 24.0,
+		"name": "solveFragment1",
+		"position": [
+			-360.0,
+			-360.0
+		]
+	},
+	{
+		"commands_raw": "$if !replySolvedFragment2 {\n    It's the right species!\n    ---\n    We can continue the ritual\n    ---\n    Find the next fragment\n    ---\n    signal(set,replySolvedFragment2,true)\n    }\n    $else {\n        Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n    }",
+		"gnode_name": "solvefragment2",
+		"id": 25.0,
+		"name": "solveFragment2",
+		"position": [
+			-440.0,
+			-560.0
+		]
+	},
+	{
+		"commands_raw": "$if !replySolvedFragment3 {\n    This must be the last fragment\n    ---\n    It references vaimmus\n    ---\n    It's a type of fish that has a spectral body and is able to shift it's own eyes\n    ---\n    signal(set,replySolvedFragment3,true)\n    }\n    $else {\n        Throw, listen, wait, pull. A ritual, like everything else we do\n    -> choices\n    }",
+		"gnode_name": "givefragment3",
+		"id": 26.0,
+		"name": "giveFragment3",
+		"position": [
+			-440.0,
+			-680.0
+		]
+	},
+	{
+		"commands_raw": "He barters because he must, but don't mistake him for a simple vendor\n---\nMarbas know this place in ways he wont admit\n---\nEvery corner we pass it's as hes already walked it\n---\nSometimes I think he might be guiding us somewhere and not just following\n---\n-> choices",
+		"gnode_name": "marbas",
+		"id": 27.0,
+		"name": "marbas",
+		"position": [
+			440.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "Sometimes\n---\nBut the silence her is louder than my dreams\n---\nI keep my eyes open, even if they're closed\n---\n-> choices",
+		"gnode_name": "sleep",
+		"id": 28.0,
+		"name": "sleep",
+		"position": [
+			460.0,
+			0.0
 		]
 	}
 ]

@@ -12,6 +12,7 @@ base_weight = 0.1
 weight_variance = 0.0
 price_variance = 0
 texture = ExtResource("2_nr7wx")
+description = "The final piece gleams it's light. It's symbol resembeling something of a totem, or maybe a spider."
 item_type = 1
 item_id = 4
 metadata/_custom_type_script = "uid://coj83363ykpug"

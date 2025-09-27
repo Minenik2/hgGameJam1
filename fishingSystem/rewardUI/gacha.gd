@@ -66,11 +66,11 @@ func roll_loot():
 		total_pulls += 1
 		DialogueDisplay.state["foundFragment1"] = true
 		return SEAL_FRAG_1
-	elif total_pulls >= 24 and !DialogueDisplay.state["foundFragment2"]:
+	elif total_pulls >= 24 and !DialogueDisplay.state["foundFragment2"] and DialogueDisplay.state["solvedFragment1"]:
 		total_pulls += 1
 		DialogueDisplay.state["foundFragment2"] = true
 		return SEAL_FRAG_2
-	elif total_pulls >= 36 and !DialogueDisplay.state["foundFragment3"]:
+	elif total_pulls >= 36 and !DialogueDisplay.state["foundFragment3"] and DialogueDisplay.state["solvedFragment2"]:
 		DialogueDisplay.state["foundFragment3"] = true
 		return SEAL_FRAG_3
 	
