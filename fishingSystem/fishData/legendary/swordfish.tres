@@ -14,6 +14,6 @@ base_price = 500
 price_variance = 100
 rarity = 2
 texture = ExtResource("2_8r457")
-description = "Towering shaped creature. It seems to have adapted by making their own holes."
+description = "Towering shaped creature. It seems to aggresively make holes in the structure."
 item_id = 14
 metadata/_custom_type_script = "uid://coj83363ykpug"

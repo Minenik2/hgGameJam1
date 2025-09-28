@@ -45,6 +45,20 @@ layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
 
+[node name="inventory" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_constants/outline_size = 6
+text = "I n v e n t o r y"
+
+[node name="collection" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_constants/outline_size = 6
+text = "C o l l e c t i o n"
+
 [node name="Back" type="Button" parent="VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -52,4 +66,6 @@ focus_mode = 0
 theme_override_constants/outline_size = 6
 text = "B a c k"
 
+[connection signal="pressed" from="VBoxContainer2/inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="VBoxContainer2/collection" to="." method="_on_collection_pressed"]
 [connection signal="pressed" from="VBoxContainer2/Back" to="." method="_on_back_pressed"]

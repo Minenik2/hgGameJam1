@@ -20,7 +20,7 @@
 		]
 	},
 	{
-		"commands_raw": "The rod in your hands! Cast it into the void below. \n---\nWhen you hear the splash, it's found the water. Wait.. ten to fifteen heartbeats. \n---\nThen you'll notice a red spark on the castline. \n---\nIt bites... Pull it - let it struggle, but it knows that it will eventually become prey.\n---\n-> choices",
+		"commands_raw": "The rod in your hands! Cast it into the void below. \n---\nWhen you hear the splash, it's found the water. Wait.. ten to fifteen seconds. \n---\nThen you'll notice a red spark on the castline. \n---\nIt bites... Pull it - let it struggle, but it knows that it will eventually become prey.\n---\n-> choices",
 		"gnode_name": "remind",
 		"id": 2.0,
 		"name": "remind",

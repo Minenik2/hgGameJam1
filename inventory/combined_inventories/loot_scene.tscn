@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsjw4dnrto7p7"]
+[gd_scene load_steps=9 format=3 uid="uid://bsjw4dnrto7p7"]
 
 [ext_resource type="PackedScene" uid="uid://b4f7svei6orof" path="res://inventory/inventory.tscn" id="1_ugvoa"]
 [ext_resource type="Script" uid="uid://b7a02n0n7pv02" path="res://inventory/combined_inventories/loot_scene_manager.gd" id="1_wcvx8"]
+[ext_resource type="Script" uid="uid://bk4uspud2fmwb" path="res://inventory/combined_inventories/iko_held.gd" id="2_m6elu"]
 [ext_resource type="Script" uid="uid://cvvc1q2klkmqh" path="res://inventory/combined_inventories/player_stats.gd" id="3_nfyma"]
 [ext_resource type="Script" uid="uid://cd4kgi8nx7f7c" path="res://inventory/combined_inventories/shop_component.gd" id="3_vhf8b"]
 [ext_resource type="PackedScene" uid="uid://k3tk4cwn4yi6" path="res://ui/upgradeShop/upgrade_shop.tscn" id="4_whs0q"]
 [ext_resource type="Script" uid="uid://dncn8fmfu6hit" path="res://inventory/combined_inventories/questSplash.gd" id="4_yafua"]
+[ext_resource type="PackedScene" uid="uid://b8f0n1y5jjgvv" path="res://ui/collectionUI/collectionUI.tscn" id="7_gcvot"]
 
 [node name="loot_scene" type="CanvasLayer"]
 visible = false
@@ -24,7 +26,6 @@ size_flags_horizontal = 3
 theme_override_constants/margin_top = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
-visible = false
 layout_mode = 2
 
 [node name="title" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
@@ -41,6 +42,14 @@ text = "Left click - Move Fish
 R - Rotate"
 horizontal_alignment = 1
 
+[node name="IkoHeld" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "IKO Held: 0"
+horizontal_alignment = 1
+script = ExtResource("2_m6elu")
+
 [node name="inventoryReward" parent="HBoxContainer/MarginContainer2/VBoxContainer" instance=ExtResource("1_ugvoa")]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -49,6 +58,7 @@ column_count = 4
 rows = 6
 
 [node name="playerStats" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+visible = false
 layout_mode = 2
 script = ExtResource("3_nfyma")
 
@@ -219,7 +229,12 @@ rows = 6
 [node name="upgradeShop" parent="." instance=ExtResource("4_whs0q")]
 visible = false
 
+[node name="CollectionUi" parent="." instance=ExtResource("7_gcvot")]
+visible = false
+
+[connection signal="item_picked_up" from="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" to="HBoxContainer/MarginContainer2/VBoxContainer/IkoHeld" method="_on_inventory_reward_item_picked_up"]
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_picked_up"]
+[connection signal="item_placed" from="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" to="HBoxContainer/MarginContainer2/VBoxContainer/IkoHeld" method="_on_inventory_reward_item_placed"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_placed"]
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer2/shop/inventoryShop" to="HBoxContainer/MarginContainer2/shop" method="_on_inventory_shop_item_picked_up"]
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer2/shop/inventoryShop" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_picked_up"]
@@ -232,10 +247,13 @@ visible = false
 [connection signal="item_placed" from="HBoxContainer/MarginContainer2/questItems/inventoryQuest" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_item_placed"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/questItems/MarginContainer/giveItem" to="HBoxContainer/MarginContainer2/questItems" method="_on_give_item_pressed"]
 [connection signal="button_down" from="HBoxContainer/MarginContainer3/done" to="." method="_on_done_button_down"]
+[connection signal="item_picked_up" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/VBoxContainer/IkoHeld" method="_on_inventory_reward_item_picked_up"]
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" method="_on_item_picked_up"]
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/shop/inventoryShop" method="_on_item_picked_up"]
 [connection signal="item_picked_up" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/questItems/inventoryQuest" method="_on_item_picked_up"]
+[connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/VBoxContainer/IkoHeld" method="_on_inventory_reward_item_placed"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/VBoxContainer/inventoryReward" method="_on_item_placed"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/shop/inventoryShop" method="_on_item_placed"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/questItems/inventoryQuest" method="_on_item_placed"]
 [connection signal="donePressed" from="upgradeShop" to="." method="_on_upgrade_shop_done_pressed"]
+[connection signal="donePressed" from="CollectionUi" to="." method="_on_collection_ui_done_pressed"]

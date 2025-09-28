@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://diow28hope6d2" path="res://main_menu/main_menu.gdshader" id="2_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bxyynubgb8ttg" path="res://art/splash.jpg" id="3_3f7m4"]
 [ext_resource type="Shader" uid="uid://cnt65e5j3ljvm" path="res://main_menu/blurShader.gdshader" id="5_3f7m4"]
-[ext_resource type="Script" uid="uid://du2ghcrnrp0kj" path="res://ui/customBotton/pop_button.gd" id="5_6tl50"]
+[ext_resource type="Script" uid="uid://du2ghcrnrp0kj" path="res://ui/customButton/pop_button.gd" id="5_6tl50"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8ln24"]
 shader = ExtResource("2_wu84c")

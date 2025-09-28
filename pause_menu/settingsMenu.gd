@@ -70,3 +70,18 @@ func _update_volume_label(value: float):
 
 func _on_back_pressed() -> void:
 	_toggle_menu()
+
+
+func _on_inventory_pressed() -> void:
+	if LootScene.visible:
+		LootScene.closeUi()
+	else:
+		LootScene.startInventory()
+	_toggle_menu()
+
+func _on_collection_pressed() -> void:
+	if LootScene.visible:
+		LootScene.closeUi()
+	else:
+		LootScene.startCollection()
+	_toggle_menu()

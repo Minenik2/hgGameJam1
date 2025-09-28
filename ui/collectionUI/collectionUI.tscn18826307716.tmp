@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://b8f0n1y5jjgvv"]
+
+[ext_resource type="Script" uid="uid://bau4jo4bfywnk" path="res://ui/collectionUI/collection_ui.gd" id="1_ockov"]
+[ext_resource type="Script" uid="uid://coj83363ykpug" path="res://fishingSystem/fishData/fishData.gd" id="2_hsawf"]
+[ext_resource type="Resource" uid="uid://b3qnbudgir51a" path="res://fishingSystem/fishData/common/dustfin.tres" id="3_wm7e8"]
+[ext_resource type="Resource" uid="uid://di7giat13gv7p" path="res://fishingSystem/fishData/common/eyefish.tres" id="4_ykinh"]
+[ext_resource type="Resource" uid="uid://cvsltdcywfis6" path="res://fishingSystem/fishData/common/greyscale_marrow.tres" id="5_05ly3"]
+[ext_resource type="Resource" uid="uid://dmfvl04tl83s3" path="res://fishingSystem/fishData/common/pipe_darter.tres" id="6_ddwgd"]
+[ext_resource type="Resource" uid="uid://dq10bv06wnmx8" path="res://fishingSystem/fishData/rare/eel.tres" id="7_ncu2w"]
+[ext_resource type="Resource" uid="uid://bv4inqkcd5xmv" path="res://fishingSystem/fishData/rare/hoodwinker.tres" id="8_mhsau"]
+[ext_resource type="Resource" uid="uid://cjody3ulnnwxg" path="res://fishingSystem/fishData/rare/pelican.tres" id="9_57ebe"]
+[ext_resource type="Resource" uid="uid://bi0x4wx7in47b" path="res://fishingSystem/fishData/rare/rhinochimera.tres" id="10_6sg37"]
+[ext_resource type="Resource" uid="uid://bofyywxsj45ej" path="res://fishingSystem/fishData/rare/seahorse.tres" id="11_6gyol"]
+[ext_resource type="Resource" uid="uid://csir7h22jg48o" path="res://fishingSystem/fishData/legendary/fang.tres" id="12_kciob"]
+[ext_resource type="Resource" uid="uid://dtxm6prtsie60" path="res://fishingSystem/fishData/legendary/globb.tres" id="13_pc1yq"]
+[ext_resource type="Resource" uid="uid://d2ghws76xt4vf" path="res://fishingSystem/fishData/legendary/scissor.tres" id="14_yhcmc"]
+[ext_resource type="Resource" uid="uid://rwsu00mccy8q" path="res://fishingSystem/fishData/legendary/star.tres" id="15_qabcg"]
+[ext_resource type="Resource" uid="uid://beull7eh4qrkf" path="res://fishingSystem/fishData/legendary/swordfish.tres" id="16_wnmcp"]
+[ext_resource type="Resource" uid="uid://dephx8bnujd0w" path="res://fishingSystem/fishData/legendary/twins.tres" id="17_3xx75"]
+
+[node name="CollectionUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ockov")
+fish_list = Array[ExtResource("2_hsawf")]([ExtResource("3_wm7e8"), ExtResource("4_ykinh"), ExtResource("5_05ly3"), ExtResource("6_ddwgd"), ExtResource("7_ncu2w"), ExtResource("8_mhsau"), ExtResource("9_57ebe"), ExtResource("10_6sg37"), ExtResource("11_6gyol"), ExtResource("12_kciob"), ExtResource("13_pc1yq"), ExtResource("14_yhcmc"), ExtResource("15_qabcg"), ExtResource("16_wnmcp"), ExtResource("17_3xx75")])
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="PanelContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FishName" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 48
+
+[node name="FishDescription" type="RichTextLabel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 6
+
+[node name="FishTexture" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 5
+
+[node name="PageLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PrevButton" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/outline_size = 6
+text = "Previous Page"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="NextButton" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/outline_size = 6
+text = "Next Page"
+
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/PrevButton" to="." method="_on_prev_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer2/NextButton" to="." method="_on_next_button_pressed"]

@@ -35,6 +35,10 @@ func updateAll():
 	rod.text = "Circuit Rod\n" + str(Database.levelRod) + "/" + str(Database.levelMaxRod)
 	bait.text = "Splick Bait\n" + str(Database.levelBait) + "/" + str(Database.levelMaxBait)
 	wire.text = "Vein Wire\n" + str(Database.levelWire) + "/" + str(Database.levelMaxWire)
+	
+	updateRod()
+	updateBait()
+	updateWire()
 
 func updateRod():
 	cost.text = "IKO Owned: [color={0}]{1}[/color] IKO Cost: [color={2}]{3}[/color]".format([
@@ -102,3 +106,7 @@ func _on_done_pressed() -> void:
 	AudioManager.playMenuClick()
 	hide()
 	donePressed.emit()
+
+
+func _on_inventory_pressed() -> void:
+	pass # Replace with function body.

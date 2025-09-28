@@ -24,6 +24,7 @@ func startLoot(currentFish: FishData) -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	inventoryReward.spawn_item_to_inventory(currentFish)
+	$CollectionUi.discover_fish(currentFish)
 	# % chance to spawn an extra one
 	if randi() % 100 < Database.doubleChance and currentFish.item_type == FishData.TYPE.FISH:  # generates a number 0-99
 		inventoryReward.spawn_item_to_inventory(currentFish)
@@ -51,13 +52,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		if visible:
 			closeUi()
 		else:
-			AudioManager.playMenuClick()
-			$HBoxContainer/MarginContainer2/playerStats/statMoney.text = "IKO: " + str(Database.money)
-			hide_all()
-			player_stats.show()
-			show()
-			MouseManager.show_mouse()
-			inventoryPlayer.active = true
+			startInventory()
+	elif event.is_action_pressed("collection"):
+		if visible:
+			closeUi()
+		else:
+			startCollection()
 
 func hide_all():
 	$HBoxContainer/MarginContainer2/VBoxContainer.hide() # reward ui
@@ -65,11 +65,29 @@ func hide_all():
 	$HBoxContainer/MarginContainer2/shop.hide()
 	%questItems.hide()
 	$upgradeShop.hide()
+	$CollectionUi.hide()
 	
 	inventoryReward.active = false
 	inventoryPlayer.active = false
 	inventoryShop.active = false
 	%inventoryQuest.active = false
+
+func startCollection():
+	AudioManager.playMenuClick()
+	hide_all()
+	$HBoxContainer.hide()
+	$CollectionUi.show()
+	show()
+	MouseManager.show_mouse()
+
+func startInventory():
+	AudioManager.playMenuClick()
+	$HBoxContainer/MarginContainer2/playerStats/statMoney.text = "IKO: " + str(Database.money)
+	hide_all()
+	player_stats.show()
+	show()
+	MouseManager.show_mouse()
+	inventoryPlayer.active = true
 
 func startShop():
 	hide_all()
@@ -99,10 +117,14 @@ func on_dialogue_signal(command):
 
 func startUpgrades():
 	hide_all()
+	$upgradeShop.updateAll()
 	$HBoxContainer.hide()
 	$upgradeShop.show()
 	show()
 	MouseManager.show_mouse()
 
 func _on_upgrade_shop_done_pressed() -> void:
+	closeUi()
+
+func _on_collection_ui_done_pressed() -> void:
 	closeUi()
