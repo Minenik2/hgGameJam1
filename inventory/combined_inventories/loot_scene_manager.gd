@@ -13,6 +13,7 @@ func _on_done_button_down() -> void:
 	closeUi()
 
 func startLoot(currentFish: FishData) -> void:
+	$HBoxContainer/MarginContainer2/VBoxContainer/IkoHeld.text = "IKO Held: 0"
 	hide_all()
 	$HBoxContainer.show()
 	$HBoxContainer/MarginContainer2/VBoxContainer.show()

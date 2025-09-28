@@ -259,3 +259,7 @@ func _on_item_picked_up(item: Variant) -> void:
 func _on_item_placed(item: Variant) -> void:
 	item.selected = false
 	item_held = null
+
+
+func _on_upgrade_shop_upgrade_inventory() -> void:
+	increaseRow(1)

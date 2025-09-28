@@ -224,7 +224,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 column_count = 4
-rows = 6
+rows = 2
 
 [node name="upgradeShop" parent="." instance=ExtResource("4_whs0q")]
 visible = false
@@ -256,4 +256,5 @@ visible = false
 [connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/shop/inventoryShop" method="_on_item_placed"]
 [connection signal="item_placed" from="HBoxContainer/MarginContainer/VBoxContainer/inventory" to="HBoxContainer/MarginContainer2/questItems/inventoryQuest" method="_on_item_placed"]
 [connection signal="donePressed" from="upgradeShop" to="." method="_on_upgrade_shop_done_pressed"]
+[connection signal="upgradeInventory" from="upgradeShop" to="HBoxContainer/MarginContainer/VBoxContainer/inventory" method="_on_upgrade_shop_upgrade_inventory"]
 [connection signal="donePressed" from="CollectionUi" to="." method="_on_collection_ui_done_pressed"]

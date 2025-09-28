@@ -18,7 +18,7 @@ func _ready():
 	update_page()
 
 func discover_fish(fish: FishData) -> void:
-	if !discovered[fish.name]:
+	if fish.item_type == FishData.TYPE.FISH and !discovered[fish.name]:
 		discovered[fish.name] = true
 		update_page()
 

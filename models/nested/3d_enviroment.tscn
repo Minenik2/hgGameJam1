@@ -1389,7 +1389,7 @@ size = Vector3(25.2706, 14.6575, 1.53906)
 size = Vector3(4.77832, 4.08618, 5.17145)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nam08"]
-size = Vector3(5.295685, 4.4194336, 4.4067993)
+size = Vector3(5.295685, 4.4194336, 6.3557434)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5ruyq"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -1955,7 +1955,7 @@ dialogue_resource = ExtResource("12_22wd6")
 player = NodePath("../playerController")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/interactionArea2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9970245, -1.7097168, -1.1202698)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9970245, -1.7097168, -2.0947418)
 shape = SubResource("BoxShape3D_nam08")
 debug_color = Color(0.31274292, 0.6161, 0.33340767, 0.41960785)
 

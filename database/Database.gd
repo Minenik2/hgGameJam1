@@ -10,10 +10,13 @@ var doubleChance = 5 # %
 var wait_time_min = 3.0 # 1.0
 var wait_time_max = 6.0 # 3.0
 
+var playerInvSpace = 2
+
 # upgrades
 var costRod = 100
 var costBait = 100
 var costWire = 100
+var costInvSpace = 100
 
 # increase cost
 var increaseCost = 20
@@ -22,10 +25,13 @@ var increaseCost = 20
 var levelRod = 1
 var levelBait = 1
 var levelWire = 1
+var levelInv = 1
+
 # max level
 var levelMaxRod = 25
 var levelMaxBait = 25
 var levelMaxWire = 25
+var levelMaxInv = 7
 
 # increase
 var increaseTime = 0.1
@@ -67,6 +73,12 @@ func buyWire():
 	Gacha.pull_rates["legendary"] = Gacha.pull_rates["legendary"] + increaseRarity
 	Gacha.pull_rates["common"] = 100 - (Gacha.pull_rates["rare"] + Gacha.pull_rates["legendary"])
 	costWire += increaseCost
+
+func buyInventorySpace():
+	money -= costInvSpace
+	levelInv += 1
+	playerInvSpace += 1
+	costInvSpace += 100
 
 # TODO
 # increaseRodPower less wait time

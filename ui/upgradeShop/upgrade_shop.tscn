@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://k3tk4cwn4yi6"]
+[gd_scene load_steps=6 format=3 uid="uid://k3tk4cwn4yi6"]
 
 [ext_resource type="Texture2D" uid="uid://c4n7ttistwwcq" path="res://art/icons/rod.png" id="1_aqr6k"]
 [ext_resource type="Script" uid="uid://dc74liy3rgd8w" path="res://ui/upgradeShop/upgrade_shop.gd" id="1_m53qk"]
 [ext_resource type="Texture2D" uid="uid://n7yf10cvgk78" path="res://art/icons/bait.png" id="2_m53qk"]
 [ext_resource type="Texture2D" uid="uid://cj50pggdhk2xt" path="res://art/icons/wire.png" id="3_aqr6k"]
+[ext_resource type="Texture2D" uid="uid://b0pu03g2hdwjb" path="res://art/icons/invSpace.png" id="5_62uf7"]
 
 [node name="upgradeShop" type="Control"]
 layout_mode = 3
@@ -83,7 +84,7 @@ size_flags_horizontal = 3
 theme_override_constants/outline_size = 6
 text = "Dirk Trunk
 0/3"
-icon = ExtResource("3_aqr6k")
+icon = ExtResource("5_62uf7")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
@@ -140,6 +141,6 @@ text = "Done"
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/bait" to="." method="_on_bait_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/wire" to="." method="_on_wire_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/wire" to="." method="_on_wire_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/inventory" to="." method="_on_wire_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/inventory" to="." method="_on_wire_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/inventory" to="." method="_on_inventory_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/inventory" to="." method="_on_inventory_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/done" to="." method="_on_done_pressed"]
